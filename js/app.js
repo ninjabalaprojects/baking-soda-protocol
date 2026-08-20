@@ -1,435 +1,348 @@
 /* =================================================
-   THE BAKING SODA PROTOCOL — Main Application v2
+   THE BAKING SODA PROTOCOL — app.js v3
    ================================================= */
 'use strict';
 
-// ─── PRODUCT CONFIG ───────────────────────────────
+// ── CONFIG ────────────────────────────────────────
 const CONFIG = {
-  productName:      'The Baking Soda Protocol',
-  price:            39,
-  currency:         'USD',
-  vslUrl:           '[INSERT_VTURB_URL]',
-  vslVideoId:       '[INSERT_VTURB_VIDEO_ID]',
-  pitchRevealTime:  2300,   // 38 min 20 sec
-  checkoutUrl:      '[INSERT_CHECKOUT_URL]',
-  supportEmail:     '[INSERT_SUPPORT_EMAIL]',
-  guaranteeDays:    '[INSERT_ACTUAL_GUARANTEE_DAYS]',
+  productName:     'The Baking Soda Protocol',
+  price:           39,
+  currency:        'USD',
+  vslUrl:          '[INSERT_VTURB_URL]',
+  vslVideoId:      '[INSERT_VTURB_VIDEO_ID]',
+  pitchRevealTime: 2300,   // 38 min 20 sec
+  checkoutUrl:     '[INSERT_CHECKOUT_URL]',
+  supportEmail:    '[INSERT_SUPPORT_EMAIL]',
 };
 
-// ─── QUIZ STATE ───────────────────────────────────
-const quiz = {
-  step:       1,
-  totalSteps: 5,
-  answers:    { q1: [], q2: null, q3: null, q4: null, q5: [] },
-  stepTypes:  { 1: 'checkbox', 2: 'radio', 3: 'radio', 4: 'radio', 5: 'checkbox' },
+// ── QUIZ STATE ────────────────────────────────────
+const Q = {
+  step: 1,
+  total: 5,
+  types: { 1:'cb', 2:'rd', 3:'rd', 4:'rd', 5:'cb' },
+  answers: {}
 };
 
-// ─── UTILS ───────────────────────────────────────
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+// ── UTILS ─────────────────────────────────────────
+const get  = id  => document.getElementById(id);
+const qs   = sel => document.querySelector(sel);
+const qsa  = sel => [...document.querySelectorAll(sel)];
 
-function smoothScrollTo(el, offset = 60) {
+function scrollTo(el, offset = 56) {
   if (!el) return;
-  const top = el.getBoundingClientRect().top + window.scrollY - offset;
-  window.scrollTo({ top, behavior: 'smooth' });
+  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
 }
 
-// ─── CHECKOUT BUTTONS ────────────────────────────
+// ── CHECKOUT ──────────────────────────────────────
 function wireCheckout() {
-  $$('.cta-checkout').forEach(btn => {
+  qsa('.cta-checkout').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
       const url = CONFIG.checkoutUrl;
       if (url && url !== '[INSERT_CHECKOUT_URL]') {
         window.location.href = url;
       } else {
-        alert('Checkout URL not yet configured. Update CONFIG.checkoutUrl in js/app.js');
+        alert('[BSP] Set CONFIG.checkoutUrl in js/app.js');
       }
     });
   });
 }
 
-// ─── PITCH REVEAL ────────────────────────────────
-let pitchRevealed = false;
+// ── PITCH REVEAL ──────────────────────────────────
+let revealed = false;
 
-function revealPitchSection() {
-  if (pitchRevealed) return;
-  pitchRevealed = true;
+function revealPitch() {
+  if (revealed) return;
+  revealed = true;
 
-  const pitch = $('#pitch-reveal');
-  if (!pitch) return;
+  const comments = get('community-section');
+  const pitch    = get('pitch-reveal');
+  if (!comments || !pitch) return;
 
-  pitch.classList.remove('pitch-hidden');
-  pitch.classList.add('pitch-revealed');
-  pitch.removeAttribute('aria-hidden');
+  // 1. Fade out comments
+  comments.classList.add('hiding');
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      smoothScrollTo($('#quiz-section'), 60);
-    });
-  });
+  setTimeout(() => {
+    // 2. Hide comments completely
+    comments.style.display = 'none';
+
+    // 3. Show pitch section
+    pitch.style.display = 'block';
+
+    // Force reflow so transition fires
+    void pitch.offsetHeight;
+    pitch.classList.add('show');
+
+    // 4. Scroll to top of pitch (quiz)
+    setTimeout(() => {
+      scrollTo(get('quiz-section'), 56);
+    }, 150);
+
+    // 5. Show mobile sticky CTA
+    const sticky = get('sticky-cta');
+    if (sticky) sticky.classList.add('show');
+
+  }, 450);
 }
 
-// ─── VTURB INTEGRATION ───────────────────────────
+// ── VTURB ─────────────────────────────────────────
 function initVTurb() {
-  const container = $('#vturb-container');
+  const container = get('vturb-container');
   if (!container) return;
 
-  const videoId = CONFIG.vslVideoId;
-
-  if (!videoId || videoId === '[INSERT_VTURB_VIDEO_ID]') {
-    showDevPlaceholder();
+  const vid = CONFIG.vslVideoId;
+  if (!vid || vid === '[INSERT_VTURB_VIDEO_ID]') {
+    // Dev mode — placeholder stays visible
     return;
   }
 
-  // Remove placeholder
-  const ph = $('#video-placeholder');
-  if (ph) ph.remove();
+  get('video-placeholder')?.remove();
 
-  // Load VTurb SDK
   const script = document.createElement('script');
-  script.src = 'https://player.vturb.com.br/player.js';
+  script.src   = 'https://player.vturb.com.br/player.js';
   script.async = true;
-  script.onload  = () => buildVTurbPlayer(container, videoId);
-  script.onerror = () => buildIframeFallback(container);
+  script.onload  = () => embedVTurb(container, vid);
+  script.onerror = () => embedIframe(container);
   document.head.appendChild(script);
 }
 
-function buildVTurbPlayer(container, videoId) {
-  const player = document.createElement('vturb-player');
-  player.setAttribute('vid', videoId);
-  player.style.cssText = 'display:block;width:100%;height:100%;';
-  player.addEventListener('timeupdate', onTimeUpdate);
-  player.addEventListener('vtimeupdate', onTimeUpdate);
-  container.appendChild(player);
-  window._vturbPlayer = player;
-  startPolling();
+function embedVTurb(container, vid) {
+  const el = document.createElement('vturb-player');
+  el.setAttribute('vid', vid);
+  el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
+  el.addEventListener('timeupdate',  onTime);
+  el.addEventListener('vtimeupdate', onTime);
+  container.appendChild(el);
+  window._vp = el;
+  startPoll();
 }
 
-function buildIframeFallback(container) {
+function embedIframe(container) {
   const url = CONFIG.vslUrl;
-  if (!url || url === '[INSERT_VTURB_URL]') { showDevPlaceholder(); return; }
-  const iframe = document.createElement('iframe');
-  iframe.src = url;
-  iframe.allow = 'autoplay; fullscreen';
-  iframe.allowFullscreen = true;
-  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-  container.appendChild(iframe);
+  if (!url || url === '[INSERT_VTURB_URL]') return;
+  const fr = document.createElement('iframe');
+  fr.src = url;
+  fr.allow = 'autoplay; fullscreen';
+  fr.allowFullscreen = true;
+  fr.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+  container.appendChild(fr);
 }
 
-function onTimeUpdate(e) {
+function onTime(e) {
   const t = e.detail?.currentTime ?? e.currentTime ?? 0;
-  if (t >= CONFIG.pitchRevealTime) revealPitchSection();
+  if (t >= CONFIG.pitchRevealTime) revealPitch();
 }
 
-let pollTimer = null;
-function startPolling() {
-  pollTimer = setInterval(() => {
-    const p = window._vturbPlayer;
-    if (!p) return;
-    const t = p.currentTime ?? p.getCurrentTime?.() ?? 0;
-    if (t >= CONFIG.pitchRevealTime) { revealPitchSection(); clearInterval(pollTimer); }
+let poll = null;
+function startPoll() {
+  poll = setInterval(() => {
+    const t = window._vp?.currentTime ?? window._vp?.getCurrentTime?.() ?? 0;
+    if (t >= CONFIG.pitchRevealTime) { revealPitch(); clearInterval(poll); }
   }, 2000);
 }
 
-function showDevPlaceholder() {
-  // placeholder visible by default — add keyboard shortcut
-  console.info('[BSP] VSL not configured. Ctrl+Space = reveal pitch. URL ?preview=pitch also works.');
-}
-
-// PostMessage from VTurb iframe
+// PostMessage (iframe VTurb)
 window.addEventListener('message', e => {
   try {
     const d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-    if (!d) return;
-    const t = d.currentTime ?? d.playback_position ?? d.time ?? null;
-    if (typeof t === 'number' && t >= CONFIG.pitchRevealTime) revealPitchSection();
+    const t = d?.currentTime ?? d?.playback_position ?? d?.time ?? null;
+    if (typeof t === 'number' && t >= CONFIG.pitchRevealTime) revealPitch();
   } catch (_) {}
 });
 
-// VTurb global callback
-window.vtubeCallback = { onTimestamp: t => { if (t >= CONFIG.pitchRevealTime) revealPitchSection(); } };
+// VTurb global hook
+window.vtubeCallback = { onTimestamp: t => { if (t >= CONFIG.pitchRevealTime) revealPitch(); } };
 
-// ─── VIDEO PLACEHOLDER BUTTONS ───────────────────
-function initVideoButtons() {
-  const cont = $('#btn-continue-watching');
-  const begin = $('#btn-start-beginning');
-  if (cont)  cont.addEventListener('click',  () => console.log('[BSP] Continue watching clicked'));
-  if (begin) begin.addEventListener('click', () => console.log('[BSP] Start from beginning clicked'));
-}
-
-// ─── QUIZ ENGINE ──────────────────────────────────
+// ── QUIZ ENGINE ───────────────────────────────────
 function initQuiz() {
-  for (let s = 1; s <= quiz.totalSteps; s++) {
-    const stepEl  = $(`#quiz-step-${s}`);
+  for (let s = 1; s <= Q.total; s++) {
+    const stepEl = get(`step-${s}`);
+    const nextEl = get(`n${s}`);
+    const backEl = get(`b${s}`);
     if (!stepEl) continue;
 
-    const isCheck = quiz.stepTypes[s] === 'checkbox';
-    const inputs  = $$('input', stepEl);
-    const nextBtn = $(`#q${s}-next`);
-    const backBtn = $(`#q${s}-back`);
+    const isCB = Q.types[s] === 'cb';
 
-    // Enable next btn when selection is made
-    inputs.forEach(input => {
-      input.addEventListener('change', () => {
-        const label = input.closest('.opt-label');
-        if (isCheck) {
-          label?.classList.toggle('selected', input.checked);
+    qsa('input', stepEl).forEach(inp => {
+      inp.addEventListener('change', () => {
+        const lbl = inp.closest('.opt');
+        if (isCB) {
+          lbl?.classList.toggle('sel', inp.checked);
         } else {
-          $$('.opt-label', stepEl).forEach(l => l.classList.remove('selected'));
-          label?.classList.add('selected');
+          qsa('.opt', stepEl).forEach(o => o.classList.remove('sel'));
+          lbl?.classList.add('sel');
         }
-        const hasSelection = isCheck
-          ? $$('input:checked', stepEl).length > 0
-          : $$('input:checked', stepEl).length > 0;
-        if (nextBtn) nextBtn.disabled = !hasSelection;
+        if (nextEl) nextEl.disabled = qsa('input:checked', stepEl).length === 0;
       });
     });
 
-    if (nextBtn) nextBtn.addEventListener('click', () => advanceStep(s));
-    if (backBtn) backBtn.addEventListener('click', () => goBackStep(s));
+    nextEl?.addEventListener('click', () => goNext(s));
+    backEl?.addEventListener('click', () => goBack(s));
   }
 }
 
-function advanceStep(from) {
-  // Save answers
-  const stepEl = $(`#quiz-step-${from}`);
+function goNext(s) {
+  const stepEl = get(`step-${s}`);
   if (!stepEl) return;
-  const isCheck = quiz.stepTypes[from] === 'checkbox';
-  if (isCheck) {
-    quiz.answers[`q${from}`] = $$('input:checked', stepEl).map(i => i.value);
-  } else {
-    const checked = $('input:checked', stepEl);
-    quiz.answers[`q${from}`] = checked ? checked.value : null;
-  }
 
-  // Hide current step
+  // Save answer
+  const isCB = Q.types[s] === 'cb';
+  Q.answers[`q${s}`] = isCB
+    ? qsa('input:checked', stepEl).map(i => i.value)
+    : qs(`#step-${s} input:checked`)?.value ?? null;
+
   stepEl.classList.remove('active');
-  stepEl.classList.add('hidden');
 
-  const next = from + 1;
-
-  if (next <= quiz.totalSteps) {
-    // Show next step
+  const next = s + 1;
+  if (next <= Q.total) {
     setTimeout(() => {
-      const nextEl = $(`#quiz-step-${next}`);
-      if (nextEl) {
-        nextEl.classList.remove('hidden');
-        nextEl.classList.add('active');
-      }
-      quiz.step = next;
-      updateProgress(next);
-      smoothScrollTo($('#quiz-section'), 60);
+      const nextEl = get(`step-${next}`);
+      if (nextEl) nextEl.classList.add('active');
+      Q.step = next;
+      updateProg(next);
+      scrollTo(get('quiz-section'), 56);
     }, 150);
   } else {
-    // All steps complete — show loading animation
     showLoading();
   }
 }
 
-function goBackStep(from) {
-  const stepEl = $(`#quiz-step-${from}`);
+function goBack(s) {
+  const stepEl = get(`step-${s}`);
   if (!stepEl) return;
   stepEl.classList.remove('active');
-  stepEl.classList.add('hidden');
-
-  const prev = from - 1;
+  const prev = s - 1;
   if (prev >= 1) {
     setTimeout(() => {
-      const prevEl = $(`#quiz-step-${prev}`);
-      if (prevEl) {
-        prevEl.classList.remove('hidden');
-        prevEl.classList.add('active');
-      }
-      quiz.step = prev;
-      updateProgress(prev);
-      smoothScrollTo($('#quiz-section'), 60);
+      const prevEl = get(`step-${prev}`);
+      if (prevEl) prevEl.classList.add('active');
+      Q.step = prev;
+      updateProg(prev);
+      scrollTo(get('quiz-section'), 56);
     }, 150);
   }
 }
 
-function updateProgress(step, complete = false) {
-  const fill  = $('#quiz-progress-fill');
-  const label = $('#quiz-progress-label');
-  const pct   = complete ? 100 : Math.round((step / quiz.totalSteps) * 100);
+function updateProg(step, done = false) {
+  const fill  = get('quiz-fill');
+  const label = get('quiz-prog-label');
+  const pct   = done ? 100 : Math.round((step / Q.total) * 100);
   if (fill)  fill.style.width = pct + '%';
-  if (label) label.textContent = complete ? 'Analyzing...' : `Question ${step} of ${quiz.totalSteps}`;
+  if (label) label.textContent = done ? 'Analyzing...' : `Question ${step} of ${Q.total}`;
 }
 
-// ─── LOADING ANIMATION ────────────────────────────
+// ── LOADING ANIMATION ─────────────────────────────
 function showLoading() {
-  const loadingEl = $('#quiz-loading');
-  const quizCard  = $('#quiz-card');
-  if (!loadingEl || !quizCard) return;
+  const loading = get('quiz-loading');
+  const wrap    = get('quiz-wrap');
+  if (!loading || !wrap) return;
 
-  // Hide all steps
-  $$('.quiz-step').forEach(s => { s.classList.remove('active'); s.classList.add('hidden'); });
+  qsa('.quiz-step').forEach(s => s.classList.remove('active'));
+  loading.classList.add('on');
+  updateProg(Q.total, true);
+  scrollTo(get('quiz-section'), 56);
 
-  loadingEl.classList.add('visible');
-  updateProgress(5, true);
-  smoothScrollTo($('#quiz-section'), 60);
+  const bar = get('ql-bar');
+  const pct = get('ql-pct');
+  let cur = 0;
 
-  // Animate loading bar
-  const bar  = $('#loading-bar');
-  const pct  = $('#loading-pct');
-  let current = 0;
-
-  const interval = setInterval(() => {
-    current += Math.random() * 12 + 4;
-    if (current >= 100) { current = 100; clearInterval(interval); }
-    if (bar)  bar.style.width  = current + '%';
-    if (pct)  pct.textContent  = Math.round(current) + '%';
-    if (current >= 100) {
-      setTimeout(() => showResult(), 600);
-    }
-  }, 250);
+  const timer = setInterval(() => {
+    cur += Math.random() * 10 + 5;
+    if (cur >= 100) { cur = 100; clearInterval(timer); }
+    if (bar) bar.style.width = cur + '%';
+    if (pct) pct.textContent = Math.round(cur) + '%';
+    if (cur >= 100) setTimeout(showOffer, 600);
+  }, 220);
 }
 
-// ─── QUIZ RESULT ──────────────────────────────────
-function showResult() {
-  const loadingEl = $('#quiz-loading');
-  const resultEl  = $('#quiz-result');
-  if (loadingEl) loadingEl.classList.remove('visible');
-
-  // Personalize result text
-  const goals    = quiz.answers.q1 || [];
-  const loseAmt  = quiz.answers.q4 || '1-10';
-  const symptoms = quiz.answers.q5 || [];
-
-  const goalMap = {
-    lose_weight: 'weight management',
-    energy:      'energy levels',
-    nutrition:   'nutrition',
-    hydration:   'hydration',
-    sleep:       'sleep quality',
-    wellness:    'overall wellness',
-  };
-
-  const primaryGoal = goals.length > 0
-    ? goalMap[goals[0]] || 'wellness goals'
-    : 'wellness goals';
-
-  const titleEl = $('#result-title');
-  const descEl  = $('#result-desc');
-
-  if (titleEl) titleEl.textContent = 'Your Baking Soda Protocol Is Ready';
-  if (descEl) {
-    descEl.textContent =
-      `Based on your answers, we've put together a personalized educational protocol focused on ` +
-      `${primaryGoal} — organized around your specific situation and daily schedule.`;
-  }
-
-  if (resultEl) {
-    resultEl.classList.add('visible');
-    setTimeout(() => smoothScrollTo(resultEl, 60), 200);
+function showOffer() {
+  const loading = get('quiz-loading');
+  if (loading) loading.classList.remove('on');
+  const offer = get('offer-section');
+  if (offer) {
+    scrollTo(offer, 56);
   }
 }
 
-// ─── FAQ ACCORDION ────────────────────────────────
+// ── FAQ ────────────────────────────────────────────
 function initFAQ() {
-  $$('.faq-item').forEach(item => {
-    const btn    = item.querySelector('.faq-btn');
-    const answer = item.querySelector('.faq-answer');
-    const icon   = item.querySelector('.faq-icon');
+  qsa('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-btn');
+    const ans = item.querySelector('.faq-ans');
+    const ico = item.querySelector('.faq-ico');
     if (!btn) return;
 
     btn.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-
-      // Close all
-      $$('.faq-item.open').forEach(open => {
-        open.classList.remove('open');
-        const a = open.querySelector('.faq-answer');
-        const i = open.querySelector('.faq-icon');
+      const open = item.classList.contains('open');
+      qsa('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        const a = o.querySelector('.faq-ans');
+        const i = o.querySelector('.faq-ico');
         if (a) a.style.maxHeight = '0';
         if (i) i.textContent = '+';
       });
-
-      // Toggle current
-      if (!isOpen) {
+      if (!open) {
         item.classList.add('open');
-        if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
-        if (icon)   icon.textContent = '×';
+        if (ans) ans.style.maxHeight = ans.scrollHeight + 'px';
+        if (ico) ico.textContent = '×';
       }
     });
   });
 }
 
-// ─── STICKY HEADER ───────────────────────────────
+// ── HEADER SCROLL SHADOW ──────────────────────────
 function initHeader() {
-  const header = $('.site-header');
-  if (!header) return;
+  const h = qs('.site-header');
+  if (!h) return;
   window.addEventListener('scroll', () => {
-    header.style.boxShadow = window.scrollY > 60 ? '0 2px 12px rgba(0,0,0,0.25)' : '';
+    h.style.boxShadow = window.scrollY > 50 ? '0 2px 10px rgba(0,0,0,.3)' : '';
   }, { passive: true });
 }
 
-// ─── MOBILE STICKY CTA ───────────────────────────
-function initMobileSticky() {
-  const offer  = $('#offer-section');
-  const sticky = $('#mobile-sticky');
-  if (!offer || !sticky) return;
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      sticky.classList.toggle('visible', !e.isIntersecting && pitchRevealed);
-    });
-  }, { threshold: 0.1 });
-
-  obs.observe(offer);
-}
-
-// ─── TESTIMONIAL HELPFUL BUTTONS ─────────────────
-function initTestimonials() {
-  $$('.test-helpful-btn').forEach(btn => {
+// ── TESTIMONIAL HELPFUL BUTTONS ───────────────────
+function initTestHelp() {
+  qsa('.tc-help-btn').forEach(btn => {
     btn.addEventListener('click', function () {
-      $$('.test-helpful-btn', this.closest('.test-helpful')).forEach(b => b.style.fontWeight = '400');
+      qsa('.tc-help-btn', this.closest('.tc-helpful')).forEach(b => {
+        b.style.fontWeight = '';
+        b.style.color = '';
+      });
       this.style.fontWeight = '700';
       this.style.color = 'var(--fb-blue)';
     });
   });
 }
 
-// ─── SMOOTH ANCHOR LINKS ──────────────────────────
-function initAnchors() {
-  $$('a[href^="#"]').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === '#') return;
-    a.addEventListener('click', e => {
-      const target = document.getElementById(href.slice(1));
-      if (!target) return;
-      e.preventDefault();
-      smoothScrollTo(target, 60);
-    });
+// ── VIDEO PLACEHOLDER BUTTONS ─────────────────────
+function initVideoBtns() {
+  get('btn-continue')?.addEventListener('click', () => {
+    console.log('[BSP] Continue watching');
+  });
+  get('btn-restart')?.addEventListener('click', () => {
+    console.log('[BSP] Restart video');
   });
 }
 
-// ─── DEV SHORTCUTS ───────────────────────────────
+// ── DEV SHORTCUTS ─────────────────────────────────
 function initDev() {
-  // Ctrl+Space = reveal pitch
   document.addEventListener('keydown', e => {
-    if (e.ctrlKey && e.code === 'Space') { e.preventDefault(); revealPitchSection(); }
+    if (e.ctrlKey && e.code === 'Space') { e.preventDefault(); revealPitch(); }
   });
-
-  // ?preview=pitch in URL
   if (new URLSearchParams(window.location.search).get('preview') === 'pitch') {
-    setTimeout(revealPitchSection, 400);
+    setTimeout(revealPitch, 400);
   }
 }
 
-// ─── INIT ─────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initVTurb();
-  initVideoButtons();
+  initVideoBtns();
   initHeader();
   initQuiz();
   initFAQ();
-  initAnchors();
   wireCheckout();
-  initMobileSticky();
-  initTestimonials();
+  initTestHelp();
   initDev();
 
-  // Expose global API for VTurb
-  window.BSP = { revealPitchSection, config: CONFIG };
+  window.BSP = { revealPitch, config: CONFIG };
 });
