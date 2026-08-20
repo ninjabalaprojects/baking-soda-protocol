@@ -376,7 +376,6 @@ button { font-family: inherit; }
 
 #pitch-reveal.show { opacity: 1; }
 
-#post-quiz { display: none; }
 
 /* ── GOLD BANNER ────────────────────────────────── */
 .gold-banner {
@@ -712,10 +711,10 @@ button { font-family: inherit; }
 
 .quiz-loading { display: none; text-align: center; padding: 32px 16px; }
 .ql-title  { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.ql-sub    { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
-.ql-bar-wrap { height: 12px; background: #e4e6ea; border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
-.ql-bar    { height: 100%; background: var(--gold); border-radius: 6px; width: 0; transition: width 0.2s; }
-.ql-pct    { font-size: 14px; font-weight: 700; color: var(--gold); }
+.ql-sub    { font-size: 14px; color: var(--gray); margin-bottom: 16px; min-height: 20px; }
+.ql-bar-wrap { height: 14px; background: #e4e6ea; border-radius: 8px; overflow: hidden; margin-bottom: 8px; }
+.ql-bar    { height: 100%; background: linear-gradient(90deg, var(--gold-dk), var(--gold)); border-radius: 8px; width: 0; transition: width 0.3s ease; }
+.ql-pct    { font-size: 15px; font-weight: 700; color: var(--gold); }
 
 /* ── OFFER CARD ─────────────────────────────────── */
 #offer-section, .offer-repeat {

@@ -255,57 +255,48 @@ function updateProg(step, done = false) {
 }
 
 // ── LOADING ANIMATION ─────────────────────────────
-const LOAD_MSGS = [
-  [0,  'Analyzing your answers...'],
-  [30, 'Generating your personalized protocol...'],
-  [60, 'Calibrating your results...'],
-  [85, 'Almost ready...'],
-  [98, 'Your protocol is ready! ✓'],
-];
-
 function showLoading() {
   const loading = get('quiz-loading');
   if (!loading) return;
 
-  qsa('.quiz-step').forEach(s => s.classList.remove('active'));
-  loading.style.display = 'block';
+  qsa('.quiz-step').forEach(function(s) { s.classList.remove('active'); });
+  loading.style.cssText = 'display:block;';
   updateProg(Q.total, true);
-  scrollTo(get('quiz-section'), 56);
+  window.scrollTo(0, get('quiz-section') ? get('quiz-section').offsetTop - 56 : 0);
 
-  const bar = get('ql-bar');
-  const pct = get('ql-pct');
-  const msg = get('ql-msg');
-  let cur = 0;
-  let done = false;
+  var bar = document.getElementById('ql-bar');
+  var pct = document.getElementById('ql-pct');
+  var msg = document.getElementById('ql-msg');
+  var cur = 0;
+  var msgs = [
+    [0,  'Analyzing your answers\u2026'],
+    [30, 'Generating your personalized protocol\u2026'],
+    [60, 'Calibrating your results\u2026'],
+    [85, 'Almost ready\u2026'],
+    [98, 'Your protocol is ready!'],
+  ];
 
-  function tick() {
-    cur = Math.min(cur + (Math.random() * 8 + 4), 100);
-    if (bar) bar.style.width = cur + '%';
-    if (pct) pct.textContent = Math.round(cur) + '%';
+  var id = window.setInterval(function() {
+    cur += Math.random() * 9 + 4;
+    if (cur > 100) cur = 100;
+    var rounded = Math.round(cur);
+    if (bar) bar.style.width = rounded + '%';
+    if (pct) pct.textContent = rounded + '%';
     if (msg) {
-      for (let i = LOAD_MSGS.length - 1; i >= 0; i--) {
-        if (cur >= LOAD_MSGS[i][0]) { msg.textContent = LOAD_MSGS[i][1]; break; }
+      for (var i = msgs.length - 1; i >= 0; i--) {
+        if (cur >= msgs[i][0]) { msg.textContent = msgs[i][1]; break; }
       }
     }
-    if (cur >= 100 && !done) {
-      done = true;
-      setTimeout(showOffer, 900);
-    } else if (!done) {
-      setTimeout(tick, 250);
+    if (cur >= 100) {
+      window.clearInterval(id);
+      window.setTimeout(showOffer, 900);
     }
-  }
-
-  setTimeout(tick, 250);
+  }, 220);
 }
 
 function showOffer() {
-  // Hide loading
-  const loading = get('quiz-loading');
+  var loading = get('quiz-loading');
   if (loading) loading.style.display = 'none';
-
-  // Show post-quiz content (offer, testimonials, etc.)
-  const postQuiz = get('post-quiz');
-  if (postQuiz) postQuiz.style.display = 'block';
 
   const result = get('quiz-result');
   if (!result) return;
@@ -345,8 +336,6 @@ function initRedo() {
   get('btn-redo')?.addEventListener('click', () => {
     const result = get('quiz-result');
     if (result) { result.classList.remove('show'); result.style.display = 'none'; }
-    const postQuiz = get('post-quiz');
-    if (postQuiz) postQuiz.style.display = 'none';
     Q.answers = {};
     Q.step = 1;
     qsa('input[type=checkbox], input[type=radio]').forEach(inp => { inp.checked = false; });
