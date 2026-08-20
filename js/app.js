@@ -94,9 +94,6 @@ function revealPitch() {
       scrollTo(get('quiz-section'), 56);
     }, 150);
 
-    // 5. Show mobile sticky CTA
-    const sticky = get('sticky-cta');
-    if (sticky) sticky.classList.add('show');
 
   }, 450);
 }
