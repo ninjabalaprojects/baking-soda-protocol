@@ -181,6 +181,21 @@ function initQuiz() {
   }
 }
 
+function slideStep(fromEl, toEl, direction) {
+  // Animate out current step
+  fromEl.classList.add('exiting');
+
+  setTimeout(() => {
+    fromEl.classList.remove('active', 'exiting');
+    if (toEl) {
+      if (direction === 'back') toEl.classList.add('from-back');
+      toEl.classList.add('active');
+      // Remove helper class after animation
+      setTimeout(() => toEl.classList.remove('from-back'), 350);
+    }
+  }, 250);
+}
+
 function goNext(s) {
   const stepEl = get(`step-${s}`);
   if (!stepEl) return;
@@ -191,35 +206,30 @@ function goNext(s) {
     ? qsa('input:checked', stepEl).map(i => i.value)
     : qs(`#step-${s} input:checked`)?.value ?? null;
 
-  stepEl.classList.remove('active');
-
   const next = s + 1;
   if (next <= Q.total) {
-    setTimeout(() => {
-      const nextEl = get(`step-${next}`);
-      if (nextEl) nextEl.classList.add('active');
-      Q.step = next;
-      updateProg(next);
-      scrollTo(get('quiz-section'), 56);
-    }, 150);
+    const nextEl = get(`step-${next}`);
+    slideStep(stepEl, nextEl, 'forward');
+    Q.step = next;
+    updateProg(next);
   } else {
-    showLoading();
+    stepEl.classList.add('exiting');
+    setTimeout(() => {
+      stepEl.classList.remove('active', 'exiting');
+      showLoading();
+    }, 250);
   }
 }
 
 function goBack(s) {
   const stepEl = get(`step-${s}`);
   if (!stepEl) return;
-  stepEl.classList.remove('active');
   const prev = s - 1;
   if (prev >= 1) {
-    setTimeout(() => {
-      const prevEl = get(`step-${prev}`);
-      if (prevEl) prevEl.classList.add('active');
-      Q.step = prev;
-      updateProg(prev);
-      scrollTo(get('quiz-section'), 56);
-    }, 150);
+    const prevEl = get(`step-${prev}`);
+    slideStep(stepEl, prevEl, 'back');
+    Q.step = prev;
+    updateProg(prev);
   }
 }
 

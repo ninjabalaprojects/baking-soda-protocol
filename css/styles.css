@@ -430,13 +430,45 @@ button { font-family: inherit; }
 
 .prog-fill {
   height: 100%;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--gold-dk), var(--gold), #F5C842);
   border-radius: 3px;
-  transition: width 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 6px rgba(196,150,31,0.4);
 }
 
-.quiz-step { display: none; }
-.quiz-step.active { display: block; }
+.quiz-step {
+  display: none;
+}
+
+.quiz-step.active {
+  display: block;
+  animation: stepSlideIn 0.3s ease forwards;
+}
+
+.quiz-step.exiting {
+  display: block;
+  animation: stepSlideOut 0.25s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes stepSlideIn {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes stepSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-28px); }
+}
+
+@keyframes stepSlideInBack {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.quiz-step.active.from-back {
+  animation: stepSlideInBack 0.3s ease forwards;
+}
 
 .quiz-q {
   font-size: 16px;
@@ -455,20 +487,36 @@ button { font-family: inherit; }
 .opt {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 12px;
+  padding: 13px 16px;
   border: 2px solid #e4e6ea;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: border-color 0.15s, background 0.15s;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04);
+  transition: all 0.18s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .opt input { display: none; }
-.opt-ico { font-size: 18px; flex-shrink: 0; }
-.opt:hover { border-color: var(--gold); }
-.opt.sel  { border-color: var(--gold); background: #FFF8E1; }
+.opt-ico { font-size: 20px; flex-shrink: 0; }
+
+.opt:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(196,150,31,0.15), 0 2px 4px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.opt:active { transform: translateY(0); }
+
+.opt.sel {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #FFFDE7, #FFF8E1);
+  box-shadow: 0 4px 14px rgba(196,150,31,0.22), inset 0 1px 0 rgba(255,255,255,0.8);
+}
 
 .quiz-btns {
   display: flex;
@@ -479,20 +527,31 @@ button { font-family: inherit; }
 .btn-cont {
   flex: 1;
   padding: 14px;
-  background: var(--green);
+  background: linear-gradient(180deg, #388E3C, #2E7D32);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 0 var(--green-dk);
+  box-shadow: 0 4px 0 var(--green-dk), 0 6px 14px rgba(46,125,50,0.25);
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.btn-cont:not(:disabled):hover { background: #256427; }
+.btn-cont:not(:disabled):hover {
+  background: linear-gradient(180deg, #43A047, #388E3C);
+  box-shadow: 0 4px 0 var(--green-dk), 0 8px 18px rgba(46,125,50,0.3);
+  transform: translateY(-1px);
+}
+
+.btn-cont:not(:disabled):active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--green-dk), 0 2px 6px rgba(46,125,50,0.2);
+}
 
 .btn-cont:disabled {
-  background: #bdbdbd;
+  background: linear-gradient(180deg, #ccc, #bbb);
   box-shadow: 0 3px 0 #999;
   cursor: not-allowed;
 }
@@ -542,6 +601,26 @@ button { font-family: inherit; }
   background: var(--gold);
   padding: 14px 16px;
   text-align: center;
+}
+
+.card-mockup {
+  background: #FFFDE7;
+  padding: 16px 20px 10px;
+  text-align: center;
+  border-bottom: 1px solid #F5E3A0;
+}
+
+.product-mockup {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+}
+
+@media (max-width: 640px) {
+  .product-mockup { max-width: 180px; }
 }
 
 .card-tag {
@@ -670,23 +749,36 @@ button { font-family: inherit; }
   align-items: flex-start;
 }
 
-.guar-badge {
+/* Guarantee seal — 60-day money back badge */
+.guar-seal {
   flex-shrink: 0;
-  width: 86px;
-  height: 86px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: var(--green);
+  background: radial-gradient(circle at 35% 30%, #43A047, #1B5E20);
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 6px #2E7D32,
+    0 4px 18px rgba(46,125,50,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guar-seal-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: #fff;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
-.g-pct   { font-size: 18px; font-weight: 900; }
-.g-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+.gs-days     { font-size: 26px; font-weight: 900; line-height: 1; }
+.gs-days-lbl { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; margin-top: 1px; }
+.gs-divider  { width: 52px; height: 1px; background: rgba(255,255,255,0.35); margin: 3px 0; }
+.gs-pct      { font-size: 14px; font-weight: 900; line-height: 1; }
+.gs-lbl      { font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; opacity: 0.9; }
 
 .guar-text h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
 .guar-text p  { font-size: 14px; color: #444; line-height: 1.55; }
