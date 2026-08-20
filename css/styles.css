@@ -376,6 +376,8 @@ button { font-family: inherit; }
 
 #pitch-reveal.show { opacity: 1; }
 
+#post-quiz { display: none; }
+
 /* ── GOLD BANNER ────────────────────────────────── */
 .gold-banner {
   background: var(--gold);
@@ -708,8 +710,7 @@ button { font-family: inherit; }
 
 .btn-redo:hover { color: #333; }
 
-.quiz-loading { display: none; text-align: center; padding: 24px 0; }
-.quiz-loading.on { display: block; }
+.quiz-loading { display: none; text-align: center; padding: 32px 16px; }
 .ql-title  { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
 .ql-sub    { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
 .ql-bar-wrap { height: 12px; background: #e4e6ea; border-radius: 6px; overflow: hidden; margin-bottom: 8px; }

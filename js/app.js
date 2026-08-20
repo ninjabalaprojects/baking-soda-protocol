@@ -255,13 +255,20 @@ function updateProg(step, done = false) {
 }
 
 // ── LOADING ANIMATION ─────────────────────────────
+const LOAD_MSGS = [
+  [0,  'Analyzing your answers...'],
+  [30, 'Generating your personalized protocol...'],
+  [60, 'Calibrating your results...'],
+  [85, 'Almost ready...'],
+  [98, 'Your protocol is ready! ✓'],
+];
+
 function showLoading() {
   const loading = get('quiz-loading');
-  const wrap    = get('quiz-wrap');
-  if (!loading || !wrap) return;
+  if (!loading) return;
 
   qsa('.quiz-step').forEach(s => s.classList.remove('active'));
-  loading.classList.add('on');
+  loading.style.display = 'block';
   updateProg(Q.total, true);
   scrollTo(get('quiz-section'), 56);
 
@@ -269,34 +276,39 @@ function showLoading() {
   const pct = get('ql-pct');
   const msg = get('ql-msg');
   let cur = 0;
+  let done = false;
 
-  const messages = [
-    { at: 0,  text: 'Analyzing your answers...' },
-    { at: 30, text: 'Generating your personalized protocol...' },
-    { at: 60, text: 'Calibrating your results...' },
-    { at: 85, text: 'Almost ready...' },
-    { at: 98, text: 'Your protocol is ready! ✓' },
-  ];
-
-  const timer = setInterval(() => {
-    cur += Math.random() * 10 + 5;
-    if (cur >= 100) { cur = 100; clearInterval(timer); }
+  function tick() {
+    cur = Math.min(cur + (Math.random() * 8 + 4), 100);
     if (bar) bar.style.width = cur + '%';
     if (pct) pct.textContent = Math.round(cur) + '%';
     if (msg) {
-      const m = [...messages].reverse().find(m => cur >= m.at);
-      if (m) msg.textContent = m.text;
+      for (let i = LOAD_MSGS.length - 1; i >= 0; i--) {
+        if (cur >= LOAD_MSGS[i][0]) { msg.textContent = LOAD_MSGS[i][1]; break; }
+      }
     }
-    if (cur >= 100) setTimeout(showOffer, 800);
-  }, 220);
+    if (cur >= 100 && !done) {
+      done = true;
+      setTimeout(showOffer, 900);
+    } else if (!done) {
+      setTimeout(tick, 250);
+    }
+  }
+
+  setTimeout(tick, 250);
 }
 
 function showOffer() {
+  // Hide loading
   const loading = get('quiz-loading');
-  if (loading) loading.classList.remove('on');
+  if (loading) loading.style.display = 'none';
+
+  // Show post-quiz content (offer, testimonials, etc.)
+  const postQuiz = get('post-quiz');
+  if (postQuiz) postQuiz.style.display = 'block';
 
   const result = get('quiz-result');
-  if (!result) { scrollTo(get('offer-section'), 56); return; }
+  if (!result) return;
 
   const a = Q.answers;
 
@@ -309,30 +321,32 @@ function showOffer() {
 
   const summary = get('result-summary');
   if (summary) {
-    summary.innerHTML = `
-      <div class="rp-row"><span class="rp-ico">🎯</span><span><strong>Goal:</strong> ${goals}</span></div>
-      <div class="rp-row"><span class="rp-ico">👤</span><span><strong>Age:</strong> ${age}</span></div>
-      <div class="rp-row"><span class="rp-ico">⚖️</span><span><strong>Current weight:</strong> ${weight}</span></div>
-      <div class="rp-row"><span class="rp-ico">📉</span><span><strong>Weight to lose:</strong> ${lose}</span></div>
-      <div class="rp-row"><span class="rp-ico">⚠️</span><span><strong>Symptoms:</strong> ${symptoms}</span></div>`;
+    summary.innerHTML =
+      '<div class="rp-row"><span class="rp-ico">&#127919;</span><span><strong>Goal:</strong> ' + goals + '</span></div>' +
+      '<div class="rp-row"><span class="rp-ico">&#128100;</span><span><strong>Age:</strong> ' + age + '</span></div>' +
+      '<div class="rp-row"><span class="rp-ico">&#9878;&#65039;</span><span><strong>Current weight:</strong> ' + weight + '</span></div>' +
+      '<div class="rp-row"><span class="rp-ico">&#128200;</span><span><strong>Weight to lose:</strong> ' + lose + '</span></div>' +
+      '<div class="rp-row"><span class="rp-ico">&#9888;&#65039;</span><span><strong>Symptoms:</strong> ' + symptoms + '</span></div>';
   }
 
   const res = RESULTS[a.q4] || RESULTS['26-50'];
   const lbsEl = get('result-lbs');
   const descEl = get('result-desc');
-  if (lbsEl) lbsEl.textContent = `${res.lbs} ${res.period}`;
+  if (lbsEl) lbsEl.textContent = res.lbs + ' ' + res.period;
   if (descEl) descEl.textContent = res.desc;
 
   result.style.display = 'block';
   void result.offsetHeight;
   result.classList.add('show');
-  setTimeout(() => scrollTo(result, 56), 50);
+  setTimeout(function() { scrollTo(result, 56); }, 100);
 }
 
 function initRedo() {
   get('btn-redo')?.addEventListener('click', () => {
     const result = get('quiz-result');
     if (result) { result.classList.remove('show'); result.style.display = 'none'; }
+    const postQuiz = get('post-quiz');
+    if (postQuiz) postQuiz.style.display = 'none';
     Q.answers = {};
     Q.step = 1;
     qsa('input[type=checkbox], input[type=radio]').forEach(inp => { inp.checked = false; });
