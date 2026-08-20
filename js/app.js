@@ -33,10 +33,10 @@ const LABELS = {
 };
 
 const RESULTS = {
-  '1-25':  { lbs: '8–15 lbs',  period: 'in the first 30 days', desc: 'Women with your profile and commitment to the full protocol have reached their goal in as little as 6–8 weeks.' },
-  '26-50': { lbs: '15–22 lbs', period: 'in the first 30 days', desc: 'Women with your profile have lost 35+ lbs — and kept it off for good.' },
-  '51-80': { lbs: '18–29 lbs', period: 'in the first 30 days', desc: 'Women with your profile and commitment to the full 6-month protocol have lost 65+ lbs — and kept it off for good.' },
-  '80+':   { lbs: '22–35 lbs', period: 'in the first 30 days', desc: 'Women with your profile have lost 80+ lbs — and maintained their results long-term.' }
+  '1-25':  { lbs: '8–15 lbs',  period: 'in the first 30 days', desc: "That's just month one. Women with your profile and commitment to the full protocol have reached their goal in as little as 6–8 weeks — and kept it off for good." },
+  '26-50': { lbs: '15–22 lbs', period: 'in the first 30 days', desc: "That's just month one. Women with your profile and commitment to the full treatment have lost 35+ lbs — and kept it off for good." },
+  '51-80': { lbs: '18–29 lbs', period: 'in the first 30 days', desc: "That's just month one. Women with your profile and commitment to the full 6-month treatment have lost 65+ lbs — and kept it off for good." },
+  '80+':   { lbs: '22–35 lbs', period: 'in the first 30 days', desc: "That's just month one. Women with your profile and commitment to the full 6-month treatment have lost 80+ lbs — and maintained their results long-term." }
 };
 
 // ── UTILS ─────────────────────────────────────────
@@ -267,14 +267,27 @@ function showLoading() {
 
   const bar = get('ql-bar');
   const pct = get('ql-pct');
+  const msg = get('ql-msg');
   let cur = 0;
+
+  const messages = [
+    { at: 0,  text: 'Analyzing your answers...' },
+    { at: 30, text: 'Generating your personalized protocol...' },
+    { at: 60, text: 'Calibrating your results...' },
+    { at: 85, text: 'Almost ready...' },
+    { at: 98, text: 'Your protocol is ready! ✓' },
+  ];
 
   const timer = setInterval(() => {
     cur += Math.random() * 10 + 5;
     if (cur >= 100) { cur = 100; clearInterval(timer); }
     if (bar) bar.style.width = cur + '%';
     if (pct) pct.textContent = Math.round(cur) + '%';
-    if (cur >= 100) setTimeout(showOffer, 600);
+    if (msg) {
+      const m = [...messages].reverse().find(m => cur >= m.at);
+      if (m) msg.textContent = m.text;
+    }
+    if (cur >= 100) setTimeout(showOffer, 800);
   }, 220);
 }
 

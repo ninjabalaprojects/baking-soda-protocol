@@ -675,6 +675,17 @@ button { font-family: inherit; }
   line-height: 1.5;
 }
 
+.qr-product {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+.qr-product-img {
+  max-width: 200px;
+  margin: 0 auto;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+}
+
 .qr-security {
   text-align: center;
   font-size: 12px;
