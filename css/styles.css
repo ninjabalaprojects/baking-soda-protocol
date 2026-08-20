@@ -51,35 +51,17 @@ button { font-family: inherit; }
 /* TODAY logo — left */
 .today-logo {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1px;
   flex-shrink: 0;
   margin-right: 24px;
   cursor: pointer;
 }
 
-.today-arch {
-  width: 36px;
-  height: 16px;
-  border-radius: 36px 36px 0 0;
-  background: linear-gradient(to right,
-    #E32026 0%, #E32026 16.6%,
-    #F36F20 16.6%, #F36F20 33.3%,
-    #FFF200 33.3%, #FFF200 50%,
-    #00A650 50%, #00A650 66.6%,
-    #0095DA 66.6%, #0095DA 83.3%,
-    #8B2E8B 83.3%, #8B2E8B 100%
-  );
-}
-
-.today-text {
-  font-size: 16px;
-  font-weight: 900;
-  color: #111;
-  letter-spacing: -0.5px;
-  line-height: 1;
-  font-style: italic;
+.today-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 /* Nav — center */
@@ -112,20 +94,10 @@ button { font-family: inherit; }
   flex-shrink: 0;
 }
 
-/* Mobile header: TODAY logo centered, Sign In right */
+/* Mobile header: TODAY logo left, Sign In right */
 @media (max-width: 640px) {
-  .header-inner {
-    justify-content: center;
-    position: relative;
-    padding: 0 16px;
-  }
-  .today-logo { margin-right: 0; }
   .header-nav { display: none; }
-  .btn-signin {
-    position: absolute;
-    right: 16px;
-    margin-left: 0;
-  }
+  .today-logo { margin-right: auto; }
 }
 
 /* ── ARTICLE ────────────────────────────────────── */
@@ -216,59 +188,15 @@ button { font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
   padding: 14px 20px 16px;
 }
 
-.brand-today-blk {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.brand-arch-lg {
-  width: 52px;
-  height: 22px;
-  border-radius: 52px 52px 0 0;
-  background: linear-gradient(to right,
-    #E32026 0%, #E32026 16.6%,
-    #F36F20 16.6%, #F36F20 33.3%,
-    #FFF200 33.3%, #FFF200 50%,
-    #00A650 50%, #00A650 66.6%,
-    #0095DA 66.6%, #0095DA 83.3%,
-    #8B2E8B 83.3%, #8B2E8B 100%
-  );
-}
-
-.brand-today-word {
-  font-size: 24px;
-  font-weight: 900;
-  color: #111;
-  letter-spacing: -0.5px;
-  font-style: italic;
-}
-
-.brand-sep {
-  width: 1px;
-  height: 44px;
-  background: #ccc;
-}
-
-.brand-nbc-blk {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-}
-
-.brand-nbc-peacock { font-size: 22px; line-height: 1.1; }
-
-.brand-nbc-word {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: #111;
+.brand-logos-img {
+  max-height: 64px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .article-hr {
