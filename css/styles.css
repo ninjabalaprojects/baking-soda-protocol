@@ -29,7 +29,7 @@ img { max-width: 100%; display: block; }
 ul { list-style: none; }
 button { font-family: inherit; }
 
-/* ── HEADER ────────────────────────────────────── */
+/* ── HEADER — identical to competitor ───────────── */
 .site-header {
   background: #fff;
   border-bottom: 1px solid var(--border);
@@ -41,27 +41,28 @@ button { font-family: inherit; }
 .header-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 16px;
-  height: 50px;
+  padding: 0 20px;
+  height: 52px;
   display: flex;
   align-items: center;
   gap: 0;
 }
 
+/* TODAY logo — left */
 .today-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1px;
   flex-shrink: 0;
-  padding-right: 16px;
+  margin-right: 24px;
   cursor: pointer;
 }
 
 .today-arch {
-  width: 34px;
-  height: 15px;
-  border-radius: 34px 34px 0 0;
+  width: 36px;
+  height: 16px;
+  border-radius: 36px 36px 0 0;
   background: linear-gradient(to right,
     #E32026 0%, #E32026 16.6%,
     #F36F20 16.6%, #F36F20 33.3%,
@@ -73,7 +74,7 @@ button { font-family: inherit; }
 }
 
 .today-text {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 900;
   color: #111;
   letter-spacing: -0.5px;
@@ -81,11 +82,12 @@ button { font-family: inherit; }
   font-style: italic;
 }
 
+/* Nav — center */
 .header-nav {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
 }
 
 .header-nav a {
@@ -97,6 +99,7 @@ button { font-family: inherit; }
 
 .header-nav a:hover { color: #000; }
 
+/* Sign In — right */
 .btn-signin {
   margin-left: auto;
   font-size: 13px;
@@ -109,8 +112,20 @@ button { font-family: inherit; }
   flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
+/* Mobile header: TODAY logo centered, Sign In right */
+@media (max-width: 640px) {
+  .header-inner {
+    justify-content: center;
+    position: relative;
+    padding: 0 16px;
+  }
+  .today-logo { margin-right: 0; }
   .header-nav { display: none; }
+  .btn-signin {
+    position: absolute;
+    right: 16px;
+    margin-left: 0;
+  }
 }
 
 /* ── ARTICLE ────────────────────────────────────── */
@@ -1060,4 +1075,52 @@ button { font-family: inherit; }
   font-size: 11px;
   font-weight: 400;
   color: var(--gray);
+}
+
+/* ── MOBILE CENTERING ────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Remove side margins so article fills screen edge-to-edge */
+  .article-wrap { padding: 0; }
+  .article,
+  #community-section {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+
+  /* Center article headline */
+  .article-h1 { text-align: center; }
+
+  /* Center brand bar text */
+  .brand-bar { gap: 20px; }
+
+  /* Center gold banners (already centered, ensure padding) */
+  .gold-banner { padding: 18px 14px; }
+
+  /* Offer card full-width on mobile */
+  .offer-body { padding: 12px; }
+  .offer-card { max-width: 100%; }
+
+  /* Guarantee: stack on mobile if very narrow */
+  .guar-inner { gap: 14px; }
+
+  /* Center quiz */
+  .quiz-wrap { padding: 16px 14px; }
+
+  /* Center final CTA */
+  .final-cta { padding: 24px 14px 16px; }
+  .final-offer { max-width: 100%; }
+
+  /* Expert: stack on mobile */
+  .expert-inner { flex-direction: column; align-items: center; text-align: center; }
+
+  /* Refs full padding */
+  .refs { padding: 16px 14px; }
+
+  /* Footer nav wrap nicely */
+  .footer-nav { gap: 12px; }
+
+  /* Sticky CTA full width */
+  .sticky-inner { gap: 10px; }
 }
