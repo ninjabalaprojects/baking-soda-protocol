@@ -2,1041 +2,1028 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Baking Soda Protocol — A digital educational wellness program featuring guides, video lessons, practical routines, recipe ideas and everyday wellness habits.">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="The Baking Soda Protocol | Educational Wellness Guide">
-  <meta property="og:description" content="Discover the popular baking soda wellness trend. Practical routines, simple recipes and everyday wellness habits — all in one digital program.">
-  <meta property="og:type" content="website">
-
-  <title>The Baking Soda Protocol | Educational Wellness Guide</title>
-
-  <!-- Preconnect for performance -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="The Baking Soda Protocol — Discover the simple $1 baking soda wellness routine that experts can't stop talking about. Digital educational program.">
+  <title>The Baking Soda Protocol | Wellness Education</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Google Fonts: Playfair Display (editorial headings) + Inter (body) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
+  </style>
 </head>
 <body>
 
-  <!-- ==========================================
-       HEADER
-  ========================================== -->
-  <header id="main-header">
-    <div class="header-inner">
-      <div class="header-brand">
-        <span class="brand-icon">◆</span>
-        <span class="brand-name">The Baking Soda Protocol</span>
-      </div>
-      <nav class="header-nav" aria-label="Primary navigation">
-        <a href="#about-brand">About</a>
-        <a href="#about-program">How It Works</a>
-        <a href="#references">Resources</a>
-      </nav>
+<!-- ================================================
+     SITE HEADER
+================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <span class="header-brand-gem">◆</span>
+      THE BAKING SODA PROTOCOL
     </div>
-  </header>
+    <nav class="header-nav">
+      <a href="#about-section">About</a>
+      <a href="#faq-section">FAQ</a>
+      <a href="#references-section">References</a>
+    </nav>
+  </div>
+</header>
 
 
-  <!-- ==========================================
-       HERO — Pre-pitch editorial header
-  ========================================== -->
-  <section id="hero" aria-label="Introduction">
-    <div class="container">
-      <p class="eyebrow-tag">WELLNESS EDUCATION</p>
-      <h1 class="hero-headline">
-        Discover the Baking Soda Trick and a&nbsp;Simple Wellness Routine You&nbsp;Can Follow at Home
-      </h1>
-      <p class="hero-subheadline">
-        An educational guide exploring the popular baking soda trend, practical routines, simple recipes and everyday wellness habits.
-      </p>
+<!-- ================================================
+     HERO HEADLINE
+================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Wellness &bull; Nutrition &bull; Education</p>
+    <h1>The $1 Baking Soda Wellness Routine That Experts Say Could Change How You Feel Every Day — Without Expensive Supplements</h1>
+    <p class="hero-sub">An independent educational exploration of the baking soda wellness trend — and the simple daily routine that thousands of people are quietly adopting at home.</p>
+  </div>
+</section>
+
+
+<!-- ================================================
+     VSL — VIDEO SALES LETTER
+================================================ -->
+<section class="vsl-section">
+  <div class="vsl-container" id="vturb-container">
+
+    <!-- VTurb player initialized by JS -->
+    <div class="vsl-placeholder" id="video-placeholder">
+      <div class="vsl-resume-box">
+        <p class="vsl-resume-text">You have already started watching this video</p>
+        <button class="vsl-resume-btn" id="btn-continue-watching">
+          <span class="vsl-resume-icon">&#9654;</span>
+          Continue watching?
+        </button>
+        <button class="vsl-resume-btn" id="btn-start-beginning">
+          <span class="vsl-resume-icon">&#8635;</span>
+          Start from beginning?
+        </button>
+      </div>
     </div>
-  </section>
-
-
-  <!-- ==========================================
-       VSL — Video Sales Letter
-  ========================================== -->
-  <section id="vsl-section" aria-label="Educational video">
-    <div class="container-narrow">
-      <div class="video-outer">
-        <div class="video-wrapper" id="vturb-container">
-          <!--
-            VTurb player will be initialized here by app.js.
-            Configure VSL_URL and VSL_VIDEO_ID in js/app.js CONFIG object.
-          -->
-          <div class="video-placeholder" id="video-placeholder">
-            <div class="video-placeholder-inner">
-              <div class="play-icon">&#9654;</div>
-              <p>Video loading&hellip;</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dev tip shown only in development -->
-      <p style="text-align:center;font-size:12px;color:rgba(255,255,255,0.35);margin-top:14px;font-family:monospace;">
-        DEV: Press <kbd style="background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:4px;color:rgba(255,255,255,0.6);">Ctrl&nbsp;+&nbsp;Space</kbd> to simulate pitch reveal &bull; Or add <kbd style="background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:4px;color:rgba(255,255,255,0.6);">?preview=pitch</kbd> to URL
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ==========================================
-       COMMUNITY QUESTIONS
-       (configurable — replace with authentic
-       questions or testimonials when available)
-  ========================================== -->
-  <section id="community-questions" aria-label="Common questions">
-    <div class="container">
-      <div class="section-label">COMMON QUESTIONS</div>
-      <h2 class="section-title">People Are Asking</h2>
-
-      <div class="questions-feed">
-
-        <div class="question-card">
-          <div class="question-header">
-            <div class="avatar avatar-blue" aria-hidden="true">M</div>
-            <div class="question-meta">
-              <span class="q-name">Margaret T.</span>
-              <span class="q-time">Just now</span>
-            </div>
-          </div>
-          <div class="question-body">
-            <p>Is this a recipe collection or a complete wellness program? I'm curious what the digital format looks like inside.</p>
-          </div>
-          <div class="question-actions">
-            <button class="action-btn" type="button" aria-label="Mark as helpful">
-              <span aria-hidden="true">&#128077;</span> Helpful
-            </button>
-            <button class="action-btn" type="button" aria-label="Reply">
-              <span aria-hidden="true">&#128172;</span> Reply
-            </button>
-          </div>
-        </div>
-
-        <div class="question-card">
-          <div class="question-header">
-            <div class="avatar avatar-green" aria-hidden="true">D</div>
-            <div class="question-meta">
-              <span class="q-name">David R.</span>
-              <span class="q-time">5 min ago</span>
-            </div>
-          </div>
-          <div class="question-body">
-            <p>What exactly is included with the digital access? Are there video lessons or just written guides?</p>
-          </div>
-          <div class="question-actions">
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128077;</span> Helpful
-            </button>
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128172;</span> Reply
-            </button>
-          </div>
-        </div>
-
-        <div class="question-card">
-          <div class="question-header">
-            <div class="avatar avatar-purple" aria-hidden="true">S</div>
-            <div class="question-meta">
-              <span class="q-name">Sandra K.</span>
-              <span class="q-time">12 min ago</span>
-            </div>
-          </div>
-          <div class="question-body">
-            <p>Can I access all the materials from my phone? I don't usually sit at a laptop at home.</p>
-          </div>
-          <div class="question-actions">
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128077;</span> Helpful
-            </button>
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128172;</span> Reply
-            </button>
-          </div>
-        </div>
-
-        <div class="question-card">
-          <div class="question-header">
-            <div class="avatar avatar-gold" aria-hidden="true">L</div>
-            <div class="question-meta">
-              <span class="q-name">Linda M.</span>
-              <span class="q-time">18 min ago</span>
-            </div>
-          </div>
-          <div class="question-body">
-            <p>How does the personalized protocol work? Do you ask questions about my goals before organizing the plan?</p>
-          </div>
-          <div class="question-actions">
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128077;</span> Helpful
-            </button>
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128172;</span> Reply
-            </button>
-          </div>
-        </div>
-
-        <div class="question-card">
-          <div class="question-header">
-            <div class="avatar avatar-teal" aria-hidden="true">R</div>
-            <div class="question-meta">
-              <span class="q-name">Robert A.</span>
-              <span class="q-time">25 min ago</span>
-            </div>
-          </div>
-          <div class="question-body">
-            <p>Is this educational content, or does it make medical claims? I always check with my doctor before starting something new.</p>
-          </div>
-          <div class="question-actions">
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128077;</span> Helpful
-            </button>
-            <button class="action-btn" type="button">
-              <span aria-hidden="true">&#128172;</span> Reply
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="questions-disclaimer">
-        <em>These are representative example questions. This section is configurable &mdash; replace with authentic member questions when available.</em>
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ==========================================
-       ╔══════════════════════════════════════╗
-       ║   PITCH SECTION                      ║
-       ║   Hidden until VSL reaches 38:20     ║
-       ║   Controlled by app.js               ║
-       ╚══════════════════════════════════════╝
-  ========================================== -->
-  <div id="pitch-reveal" class="pitch-hidden" aria-hidden="true">
-
-
-    <!-- ========================================
-         QUIZ — Quick Health Profile
-    ======================================== -->
-    <section id="quiz-section" aria-label="Personalization quiz">
-      <div class="container-narrow">
-
-        <div class="quiz-intro">
-          <div class="section-label">PERSONALIZED FOR YOU</div>
-          <h2>Let's Create Your Personalized Baking Soda Protocol</h2>
-          <p>Answer a few quick questions so we can organize the educational resources around your goals and preferences.</p>
-        </div>
-
-        <div class="quiz-card" role="form" aria-label="Wellness profile questionnaire">
-
-          <!-- Progress Indicator -->
-          <div class="quiz-progress-bar" aria-live="polite">
-            <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
-              <div class="progress-fill" id="quiz-progress-fill" style="width:20%"></div>
-            </div>
-            <div class="progress-label" id="quiz-progress-label">Question 1 of 5</div>
-          </div>
-
-
-          <!-- ── STEP 1 ─────────────────────────── -->
-          <div class="quiz-step active" data-step="1" id="quiz-step-1">
-            <h3 class="quiz-question">What is your primary wellness goal?</h3>
-            <div class="quiz-options" role="radiogroup" aria-label="Primary wellness goal">
-
-              <label class="option-card">
-                <input type="radio" name="q1" value="routine">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128197;</span>
-                  <span class="option-text">Better daily routine</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q1" value="eating">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#129367;</span>
-                  <span class="option-text">Healthier eating habits</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q1" value="hydration">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128167;</span>
-                  <span class="option-text">Better hydration</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q1" value="consistency">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#9989;</span>
-                  <span class="option-text">More consistency</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q1" value="general">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#127807;</span>
-                  <span class="option-text">General wellness</span>
-                </span>
-              </label>
-
-            </div>
-            <button class="quiz-next-btn" type="button" disabled id="q1-next">NEXT &rarr;</button>
-          </div>
-
-
-          <!-- ── STEP 2 ─────────────────────────── -->
-          <div class="quiz-step hidden" data-step="2" id="quiz-step-2">
-            <h3 class="quiz-question">How would you describe your current routine?</h3>
-            <div class="quiz-options" role="radiogroup" aria-label="Current routine">
-
-              <label class="option-card">
-                <input type="radio" name="q2" value="very_consistent">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#11088;</span>
-                  <span class="option-text">Very consistent</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q2" value="somewhat_consistent">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128260;</span>
-                  <span class="option-text">Somewhat consistent</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q2" value="just_starting">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#127807;</span>
-                  <span class="option-text">Just getting started</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q2" value="need_fresh">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128257;</span>
-                  <span class="option-text">I need a fresh routine</span>
-                </span>
-              </label>
-
-            </div>
-            <button class="quiz-next-btn" type="button" disabled id="q2-next">NEXT &rarr;</button>
-          </div>
-
-
-          <!-- ── STEP 3 ─────────────────────────── -->
-          <div class="quiz-step hidden" data-step="3" id="quiz-step-3">
-            <h3 class="quiz-question">Which area would you most like to improve?</h3>
-            <div class="quiz-options quiz-options-grid" role="radiogroup" aria-label="Improvement area">
-
-              <label class="option-card">
-                <input type="radio" name="q3" value="nutrition">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#129382;</span>
-                  <span class="option-text">Nutrition</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q3" value="hydration">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128167;</span>
-                  <span class="option-text">Hydration</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q3" value="daily_routine">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128197;</span>
-                  <span class="option-text">Daily routine</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q3" value="movement">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#127939;</span>
-                  <span class="option-text">Movement</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q3" value="sleep">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128564;</span>
-                  <span class="option-text">Sleep</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q3" value="consistency">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#9989;</span>
-                  <span class="option-text">Consistency</span>
-                </span>
-              </label>
-
-            </div>
-            <button class="quiz-next-btn" type="button" disabled id="q3-next">NEXT &rarr;</button>
-          </div>
-
-
-          <!-- ── STEP 4 ─────────────────────────── -->
-          <div class="quiz-step hidden" data-step="4" id="quiz-step-4">
-            <h3 class="quiz-question">How much time can you realistically dedicate each day?</h3>
-            <div class="quiz-options" role="radiogroup" aria-label="Daily time commitment">
-
-              <label class="option-card">
-                <input type="radio" name="q4" value="5min">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#9889;</span>
-                  <span class="option-text">5 minutes</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q4" value="10min">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#9201;</span>
-                  <span class="option-text">10 minutes</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q4" value="15min">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128336;</span>
-                  <span class="option-text">15 minutes</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q4" value="20plus">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128197;</span>
-                  <span class="option-text">20+ minutes</span>
-                </span>
-              </label>
-
-            </div>
-            <button class="quiz-next-btn" type="button" disabled id="q4-next">NEXT &rarr;</button>
-          </div>
-
-
-          <!-- ── STEP 5 ─────────────────────────── -->
-          <div class="quiz-step hidden" data-step="5" id="quiz-step-5">
-            <h3 class="quiz-question">How do you prefer to learn?</h3>
-            <div class="quiz-options" role="radiogroup" aria-label="Learning preference">
-
-              <label class="option-card">
-                <input type="radio" name="q5" value="videos">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#127916;</span>
-                  <span class="option-text">Short videos</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q5" value="guides">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#128214;</span>
-                  <span class="option-text">Step-by-step guides</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q5" value="recipes">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#127869;</span>
-                  <span class="option-text">Recipes</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q5" value="checklists">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#9989;</span>
-                  <span class="option-text">Checklists</span>
-                </span>
-              </label>
-
-              <label class="option-card">
-                <input type="radio" name="q5" value="combination">
-                <span class="option-content">
-                  <span class="option-icon" aria-hidden="true">&#127919;</span>
-                  <span class="option-text">A combination</span>
-                </span>
-              </label>
-
-            </div>
-            <button class="quiz-next-btn" type="button" disabled id="q5-next">SEE MY PROTOCOL &rarr;</button>
-          </div>
-
-
-          <!-- ── QUIZ COMPLETE ───────────────────── -->
-          <div class="quiz-step quiz-complete" data-step="complete" id="quiz-complete">
-            <div class="complete-icon" aria-hidden="true">&#9989;</div>
-            <h3>Your personalized protocol is ready.</h3>
-            <p>We've organized your educational resources based on your answers.</p>
-            <button class="cta-btn cta-btn-primary" type="button" id="see-protocol-btn">
-              SEE MY PROTOCOL
-            </button>
-          </div>
-
-        </div><!-- /.quiz-card -->
-      </div><!-- /.container-narrow -->
-    </section><!-- /#quiz-section -->
-
-
-    <!-- ========================================
-         PERSONALIZED RESULT
-         Revealed after quiz completion
-    ======================================== -->
-    <section id="quiz-result" class="result-hidden" aria-label="Your personalized protocol">
-      <div class="container-narrow">
-        <div class="result-card">
-          <div class="result-badge">YOUR RECOMMENDED PROTOCOL</div>
-          <h2 id="result-headline">Your Personalized Wellness Plan</h2>
-          <p id="result-description" class="result-description">
-            Based on your answers, we've organized a simple educational routine focused on consistency, nutrition and daily habits.
-          </p>
-          <div class="result-includes" aria-label="What's included">
-            <div class="result-item"><span class="check" aria-hidden="true">&#10003;</span> Personalized educational roadmap</div>
-            <div class="result-item"><span class="check" aria-hidden="true">&#10003;</span> Daily routine guide</div>
-            <div class="result-item"><span class="check" aria-hidden="true">&#10003;</span> Recipe resources</div>
-            <div class="result-item"><span class="check" aria-hidden="true">&#10003;</span> Nutrition guidance</div>
-            <div class="result-item"><span class="check" aria-hidden="true">&#10003;</span> Video lessons</div>
-            <div class="result-item"><span class="check" aria-hidden="true">&#10003;</span> Quick-reference guides</div>
-          </div>
-          <a href="#offer-section" class="cta-btn cta-btn-primary">
-            GET MY COMPLETE PROTOCOL
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         OFFER SECTION — $39
-    ======================================== -->
-    <section id="offer-section" aria-label="Product offer">
-      <div class="container-narrow">
-        <div class="section-label">COMPLETE DIGITAL ACCESS</div>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--charcoal);margin-bottom:10px;text-align:center;">
-          Your Complete Baking Soda Protocol
-        </h2>
-        <p class="section-subheadline" style="text-align:center;margin:0 auto 0;">
-          Everything organized in one digital experience.
-        </p>
-
-        <div class="offer-card">
-          <div class="offer-header">
-            <h3>The Baking Soda Protocol</h3>
-            <p class="offer-subtitle">Complete Digital Access</p>
-          </div>
-
-          <div class="offer-includes" aria-label="Program contents">
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Personalized educational roadmap</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Baking Soda Protocol eBook</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Video lessons</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Practical recipe collection</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Daily wellness routines</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Nutrition resources</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Daily checklists</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Quick-reference guides</div>
-            <div class="offer-item"><span class="check-gold" aria-hidden="true">&#10003;</span> Instant digital access</div>
-          </div>
-
-          <div class="offer-price" aria-label="Price">
-            <div class="price-main">
-              <span class="price-currency" aria-hidden="true">$</span>
-              <span class="price-amount">39</span>
-              <span class="price-currency-label">USD</span>
-            </div>
-            <div class="price-type">ONE-TIME PAYMENT</div>
-            <div class="price-note">No subscription.</div>
-          </div>
-
-          <a href="#" class="cta-btn cta-btn-primary cta-checkout cta-large" style="margin:0 auto;display:flex;" id="cta-main">
-            GET ACCESS FOR $39
-          </a>
-          <p class="cta-note">One-time payment &bull; Digital access &bull; No physical product</p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         GUARANTEE 1
-    ======================================== -->
-    <section class="guarantee-section" id="guarantee-1" aria-label="Money-back guarantee">
-      <div class="container-narrow">
-        <div class="guarantee-card">
-          <div class="guarantee-icon" aria-hidden="true">&#128737;</div>
-          <div class="guarantee-content">
-            <div class="section-label">YOUR PROTECTION</div>
-            <h2>Your Purchase Is Protected</h2>
-            <div class="guarantee-badge">
-              [INSERT ACTUAL GUARANTEE PERIOD]-Day Money-Back Guarantee
-            </div>
-            <p>
-              We want you to feel comfortable exploring the program. If you decide it isn't right for you, you can request a refund according to our refund policy.
-            </p>
-            <a href="#" class="cta-btn cta-btn-secondary cta-checkout">GET STARTED</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         TESTIMONIALS
-         CMS-ready: replace placeholders with
-         authenticated member testimonials
-    ======================================== -->
-    <section id="testimonials" aria-label="Member experiences">
-      <div class="container">
-        <div class="section-label">MEMBER EXPERIENCES</div>
-        <h2 class="section-title" style="text-align:center;">What Members Are Saying</h2>
-        <p class="section-subheadline" style="text-align:center;margin:0 auto 0;">
-          Authentic member experiences will appear here once available.
-        </p>
-
-        <div class="testimonials-grid">
-
-          <div class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <blockquote class="testimonial-text">
-              "[AUTHENTIC CUSTOMER TESTIMONIAL — replace this placeholder with a verified member review]"
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="avatar avatar-blue" aria-hidden="true">A</div>
-              <div>
-                <div class="author-name">[Customer Name]</div>
-                <div class="author-detail">Program Member</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <blockquote class="testimonial-text">
-              "[AUTHENTIC CUSTOMER TESTIMONIAL — replace this placeholder with a verified member review]"
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="avatar avatar-green" aria-hidden="true">B</div>
-              <div>
-                <div class="author-name">[Customer Name]</div>
-                <div class="author-detail">Program Member</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <blockquote class="testimonial-text">
-              "[AUTHENTIC CUSTOMER TESTIMONIAL — replace this placeholder with a verified member review]"
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="avatar avatar-purple" aria-hidden="true">C</div>
-              <div>
-                <div class="author-name">[Customer Name]</div>
-                <div class="author-detail">Program Member</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <blockquote class="testimonial-text">
-              "[AUTHENTIC CUSTOMER TESTIMONIAL — replace this placeholder with a verified member review]"
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="avatar avatar-gold" aria-hidden="true">D</div>
-              <div>
-                <div class="author-name">[Customer Name]</div>
-                <div class="author-detail">Program Member</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <p class="testimonials-disclaimer">
-          <em>Testimonials shown are placeholders. Replace with authenticated, consented member feedback only.</em>
-        </p>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         SECOND OFFER — Gold section
-    ======================================== -->
-    <section id="offer-2" aria-label="Second offer block">
-      <div class="container-narrow">
-        <h2>Continue With Your Complete Baking Soda Protocol</h2>
-
-        <div class="offer-2-card">
-          <div class="offer-2-includes" aria-label="Program contents">
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Personalized educational roadmap</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Baking Soda Protocol eBook</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Video lessons</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Practical recipe collection</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Daily wellness routines</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Nutrition resources</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Daily checklists</div>
-            <div class="offer-item-light"><span class="check-light" aria-hidden="true">&#10003;</span> Quick-reference guides</div>
-          </div>
-
-          <div class="offer-2-price" aria-label="Price: 39 US dollars">
-            <div class="price-main">
-              <span class="price-currency" aria-hidden="true">$</span>
-              <span class="price-amount">39</span>
-              <span class="price-currency-label">USD</span>
-            </div>
-            <div class="price-type">ONE-TIME PAYMENT</div>
-          </div>
-
-          <a href="#" class="cta-btn cta-btn-dark cta-checkout" style="margin:0 auto;display:flex;max-width:380px;">
-            GET ACCESS FOR $39
-          </a>
-          <p class="cta-note-light">One-time payment &bull; Digital access &bull; No subscription</p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         FAQ
-    ======================================== -->
-    <section id="faq" aria-label="Frequently asked questions">
-      <div class="container">
-        <div class="section-label">HAVE QUESTIONS?</div>
-        <h2 class="section-title" style="text-align:center;">Frequently Asked Questions</h2>
-
-        <div class="faq-list" role="list">
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What is The Baking Soda Protocol?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>A digital educational wellness program featuring guides, video lessons, practical routines, recipe ideas and educational resources — all focused on the popular baking soda wellness trend.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is this a physical product?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>No. This is entirely a digital product. Nothing will be shipped to you. You receive instant access to all materials after completing your purchase.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How much does it cost?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>$39 USD as a one-time payment. No hidden fees, no upsells required to access the core program.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is there a subscription?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>No. The current offer is a one-time payment. You will not be billed again unless you choose to purchase additional products.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How do I access the program?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>You receive digital access after completing your purchase. Instructions will be delivered to your email address immediately after checkout.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is this medical advice?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>No. The program is strictly educational and informational. It is not a substitute for professional medical advice, diagnosis or treatment. Always consult a qualified healthcare professional regarding your individual health circumstances.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can I access it on my phone?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" role="region">
-              <p>Yes. The digital materials are designed to be accessible from compatible mobile devices and computers — no special app required.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         ABOUT THE PROGRAM — Grid
-    ======================================== -->
-    <section id="about-program" aria-label="What's inside the program">
-      <div class="container">
-        <div class="section-label">INSIDE THE PROGRAM</div>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--charcoal);margin-bottom:48px;text-align:center;">
-          What's Inside The Baking Soda Protocol?
-        </h2>
-
-        <div class="program-grid">
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#128215;</div>
-            <h4>The Digital Guide</h4>
-            <p>A comprehensive educational eBook covering the baking soda protocol from start to finish.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#127916;</div>
-            <h4>Video Lessons</h4>
-            <p>Easy-to-follow video content breaking down each part of the wellness routine step by step.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#127869;</div>
-            <h4>Recipe Resources</h4>
-            <p>Practical baking soda recipes and usage ideas for everyday wellness habits.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#128197;</div>
-            <h4>Daily Routines</h4>
-            <p>Structured daily routines designed to be simple, repeatable and realistic to maintain.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#129367;</div>
-            <h4>Nutrition Education</h4>
-            <p>Educational guidance on how everyday nutrition choices can support your wellness goals.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#9989;</div>
-            <h4>Wellness Checklists</h4>
-            <p>Quick daily checklists to help you stay on track and build consistent, lasting habits.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#128203;</div>
-            <h4>Quick Reference Guides</h4>
-            <p>Handy reference materials you can consult anytime &mdash; no need to re-read everything.</p>
-          </div>
-
-          <div class="program-item">
-            <div class="program-icon" aria-hidden="true">&#127919;</div>
-            <h4>Personalized Learning Path</h4>
-            <p>Content organized around your specific goals and preferred learning style.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         ABOUT THE BRAND / PROGRAM ORIGIN
-    ======================================== -->
-    <section id="about-brand" aria-label="About the program">
-      <div class="container-narrow">
-        <div class="about-card">
-          <div class="section-label">ABOUT THE PROGRAM</div>
-          <h2>About The Baking Soda Protocol</h2>
-          <p class="about-description">
-            The Baking Soda Protocol was created as an educational resource to organize information about the popular baking soda trend, everyday wellness habits, practical routines and nutrition education into one easy-to-follow digital experience.
-          </p>
-          <p class="about-description">
-            The program is designed to be accessible, straightforward and actionable &mdash; bringing together guides, routines, recipes and educational content in a format that works for real people with real schedules.
-          </p>
-          <p class="about-disclaimer-small">
-            <em>This program does not claim to treat, cure or prevent any disease or medical condition. All content is for educational purposes only. Consult a qualified healthcare professional before making changes to your health routine.</em>
-          </p>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         GUARANTEE 2 — Compact block before
-         final CTA
-    ======================================== -->
-    <section class="guarantee-2-section" id="guarantee-2" aria-label="Satisfaction guarantee">
-      <div class="container-narrow">
-        <div class="guarantee-2-card">
-          <div class="guarantee-icon" aria-hidden="true">&#128737;</div>
-          <h2>Explore The Program With Confidence</h2>
-          <div class="guarantee-badge">
-            [INSERT ACTUAL GUARANTEE PERIOD]-Day Money-Back Guarantee
-          </div>
-          <p>
-            Your satisfaction matters. Explore the program and if you decide it's not right for you, contact our support team to request a refund according to our refund policy.
-          </p>
-          <a href="#" class="cta-btn cta-btn-primary cta-checkout" style="margin:0 auto;display:flex;max-width:380px;">
-            GET ACCESS FOR $39
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         FINAL CTA
-    ======================================== -->
-    <section id="final-cta" aria-label="Final call to action">
-      <div class="container-narrow">
-        <div class="section-label light-label">START TODAY</div>
-        <h2>Ready to Explore The Baking Soda Protocol?</h2>
-        <p>
-          Get organized access to practical educational resources, recipes, routines and wellness guidance &mdash; all in one digital program.
-        </p>
-
-        <div class="final-price" aria-label="Price: 39 US dollars">
-          <span class="price-currency" aria-hidden="true">$</span>
-          <span class="final-price-amount">39</span>
-          <span class="final-price-suffix">USD</span>
-        </div>
-
-        <a href="#" class="cta-btn cta-btn-primary cta-checkout cta-large" style="margin:0 auto;display:flex;">
-          GET INSTANT ACCESS
-        </a>
-        <p class="cta-note-light">One-time payment &bull; Digital product &bull; No subscription</p>
-      </div>
-    </section>
-
-
-    <!-- ========================================
-         EDUCATIONAL REFERENCES
-         Only list legitimate sources actually
-         used in the program content
-    ======================================== -->
-    <section id="references" aria-label="Educational references">
-      <div class="container">
-        <div class="section-label">EDUCATIONAL CONTENT</div>
-        <h2 style="font-family:var(--font-serif);font-size:clamp(24px,3vw,32px);font-weight:700;color:var(--charcoal);margin-bottom:16px;">
-          Educational References
-        </h2>
-        <p class="references-disclaimer">
-          The following references represent general educational sources relevant to the content areas covered in this program. The information provided is for educational purposes only and does not constitute medical advice. Individual results may vary. Consult a qualified healthcare professional regarding your individual health circumstances.
-        </p>
-
-        <div class="references-list">
-          <div class="reference-item">
-            <span class="ref-num">[1]</span>
-            <p>[Insert legitimate educational reference here — e.g., a peer-reviewed article or public health resource relevant to the program content]</p>
-          </div>
-          <div class="reference-item">
-            <span class="ref-num">[2]</span>
-            <p>[Insert legitimate educational reference here]</p>
-          </div>
-          <div class="reference-item">
-            <span class="ref-num">[3]</span>
-            <p>[Insert legitimate educational reference here]</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
 
   </div>
-  <!-- /#pitch-reveal END -->
+
+  <!-- Brand trust bar -->
+  <div class="brand-trust-bar">
+    <span class="brand-trust-logo">&#9670; The Baking Soda Protocol</span>
+    <span class="brand-trust-sep">|</span>
+    <span class="brand-trust-sub">Wellness Education</span>
+  </div>
+
+  <p class="dev-hint">DEV: <kbd>Ctrl+Space</kbd> = reveal pitch &nbsp;&bull;&nbsp; URL: <kbd>?preview=pitch</kbd></p>
+</section>
 
 
-  <!-- ==========================================
-       FOOTER
-  ========================================== -->
-  <footer id="main-footer" role="contentinfo">
-    <div class="footer-inner">
+<!-- ================================================
+     COMMUNITY COMMENTS — Facebook Style
+================================================ -->
+<section class="fb-section" id="community-section">
 
-      <div class="footer-brand">
-        <span class="brand-icon" aria-hidden="true">&#9670;</span>
-        <span class="brand-name">THE BAKING SODA PROTOCOL</span>
+  <div class="fb-count-bar wrap-full">
+    <strong>36,158 Comments</strong>
+  </div>
+
+  <div class="fb-comment-thread">
+
+    <!-- Comment 1 with reply -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=44" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Sophie Robinson</div>
+          <p class="fb-text">Wait what's the actual baking soda recipe? Do I need to watch the whole thing? 😭</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">2h</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 21</span>
+        </div>
+        <!-- Reply -->
+        <div class="fb-replies">
+          <div class="fb-reply">
+            <img class="fb-avatar fb-avatar-sm" src="https://i.pravatar.cc/32?img=12" alt="" loading="lazy">
+            <div style="flex:1;">
+              <div class="fb-bubble">
+                <div class="fb-name">Victoria Carter</div>
+                <p class="fb-text">yeah she breaks it down early on. Worth watching tbh</p>
+              </div>
+              <div class="fb-meta">
+                <span class="fb-action">Like</span>
+                <span class="fb-dot">·</span>
+                <span class="fb-action">Reply</span>
+                <span class="fb-dot">·</span>
+                <span class="fb-time">1h</span>
+                <span class="fb-reactions">&#128077;&#10084;&#65039; 18</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Refund Policy</a>
-        <a href="#">Contact</a>
-      </nav>
-
-      <div class="footer-support">
-        <p>For product support, contact:
-          <a href="mailto:[INSERT_SUPPORT_EMAIL]" data-support-email>[INSERT SUPPORT EMAIL]</a>
-        </p>
-      </div>
-
-      <div class="footer-disclaimer">
-        <p>
-          This website and program provide general educational and informational content. The Baking Soda Protocol is not a medical treatment, medication or dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Individual experiences may vary. Consult a qualified healthcare professional regarding your individual health circumstances before making any changes to your health or wellness routine.
-        </p>
-      </div>
-
-      <div class="footer-copy">
-        <p>&copy; 2024 The Baking Soda Protocol. All rights reserved.</p>
-      </div>
-
     </div>
-  </footer>
 
-
-  <!-- ==========================================
-       MOBILE STICKY CTA
-       Appears after user reaches offer section
-  ========================================== -->
-  <div id="mobile-sticky-cta" aria-hidden="true">
-    <div class="sticky-cta-inner">
-      <div class="sticky-price">
-        $39
-        <span>One-time &bull; Digital access</span>
+    <!-- Comment 2 -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=47" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Lisa G.</div>
+          <p class="fb-text">I only clicked because of the baking soda thing but the science she breaks down actually makes sense. Def gonna try it &#128526;</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">1h</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 46</span>
+        </div>
       </div>
-      <a href="#" class="cta-btn cta-btn-primary cta-checkout" style="flex:1;max-width:240px;">
-        GET ACCESS
+    </div>
+
+    <!-- Comment 3 -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=32" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Madison Scott</div>
+          <p class="fb-text">3 weeks in and my coworker asked if I got work done &#128516; nope just baking soda apparently</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">55 min</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 63</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 4 -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=56" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Charlotte Williams</div>
+          <p class="fb-text">Ok I almost scrolled past this but I'm glad I didn't. Started the baking soda routine 2 weeks ago and my jeans are already looser. Not saying it's magic but something is definitely working</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">40 min</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 58</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 5 with reply -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=20" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Daisy Collins</div>
+          <p class="fb-text">Is this actually legit or just another internet thing??</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">32 min</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 14</span>
+        </div>
+        <div class="fb-replies">
+          <div class="fb-reply">
+            <img class="fb-avatar fb-avatar-sm" src="https://i.pravatar.cc/32?img=39" alt="" loading="lazy">
+            <div style="flex:1;">
+              <div class="fb-bubble">
+                <div class="fb-name">Emily Lewis</div>
+                <p class="fb-text">I literally said the same thing lol. Try it for a week and see. My bloating went down first and now I'm back in my size 6 jeans that were sitting in my closet for like 2 years</p>
+              </div>
+              <div class="fb-meta">
+                <span class="fb-action">Like</span>
+                <span class="fb-dot">·</span>
+                <span class="fb-action">Reply</span>
+                <span class="fb-dot">·</span>
+                <span class="fb-time">28 min</span>
+                <span class="fb-reactions">&#128077;&#10084;&#65039; 35</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 6 -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=63" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Olivia Martinez</div>
+          <p class="fb-text">I've done keto, IF, ozempic... this is the first time I'm not white-knuckling it. The cravings just kinda stopped? Idk how to explain</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">20 min</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 49</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 7 -->
+    <div class="fb-comment">
+      <img class="fb-avatar fb-avatar-lg" src="https://i.pravatar.cc/48?img=54" alt="" loading="lazy">
+      <div class="fb-comment-body">
+        <div class="fb-bubble">
+          <div class="fb-name">Emma Clark</div>
+          <p class="fb-text">2 months in. Down 29 lbs. No gym. i'm honestly confused how this isn't bigger news &#128522;</p>
+        </div>
+        <div class="fb-meta">
+          <span class="fb-action">Like</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-action">Reply</span>
+          <span class="fb-dot">·</span>
+          <span class="fb-time">just now</span>
+          <span class="fb-reactions">&#128077;&#10084;&#65039; 72</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.fb-comment-thread -->
+
+  <div class="fb-closed-bar">This post is no longer receiving comments!</div>
+
+</section><!-- /.fb-section -->
+
+
+<!-- ================================================
+     ╔════════════════════════════════════╗
+     ║  PITCH REVEAL — hidden until 38:20 ║
+     ╚════════════════════════════════════╝
+================================================ -->
+<div id="pitch-reveal" class="pitch-hidden" aria-hidden="true">
+
+
+  <!-- ============================================
+       QUIZ — Quick Wellness Profile
+  ============================================ -->
+  <section id="quiz-section">
+
+    <div class="quiz-banner">
+      <div class="wrap">
+        <p class="quiz-banner-title">Choose Your Discounted Baking Soda Protocol Package With Our Special Offer!</p>
+        <p class="quiz-banner-sub">&#10003; Secure digital access on 3 and 6-month programs</p>
+      </div>
+    </div>
+
+    <div class="quiz-card" id="quiz-card">
+
+      <!-- Progress -->
+      <div class="quiz-progress">
+        <div class="quiz-progress-nums" id="quiz-progress-label">Question 1 of 5</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="quiz-progress-fill" style="width:20%"></div>
+        </div>
+      </div>
+
+      <!-- ── STEP 1 — Goals (checkboxes) ── -->
+      <div class="quiz-step active" id="quiz-step-1">
+        <h3 class="quiz-q-title">What are your main goals right now?</h3>
+        <div class="quiz-options">
+
+          <label class="opt-label" data-value="lose_weight">
+            <input type="checkbox" name="q1" value="lose_weight">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#9989;</span>
+              <span class="opt-text">Lose excess weight</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="energy">
+            <input type="checkbox" name="q1" value="energy">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#9889;</span>
+              <span class="opt-text">Get more energy</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="nutrition">
+            <input type="checkbox" name="q1" value="nutrition">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#127822;</span>
+              <span class="opt-text">Improve my nutrition</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="hydration">
+            <input type="checkbox" name="q1" value="hydration">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128167;</span>
+              <span class="opt-text">Better hydration</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="sleep">
+            <input type="checkbox" name="q1" value="sleep">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128564;</span>
+              <span class="opt-text">Sleep better</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="wellness">
+            <input type="checkbox" name="q1" value="wellness">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#127807;</span>
+              <span class="opt-text">General wellness</span>
+            </span>
+          </label>
+
+        </div>
+        <div class="quiz-btns">
+          <button class="btn-continue" id="q1-next" disabled>Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2 — Age range (radio) ── -->
+      <div class="quiz-step" id="quiz-step-2">
+        <h3 class="quiz-q-title">What is your age range?</h3>
+        <div class="quiz-options">
+
+          <label class="opt-label">
+            <input type="radio" name="q2" value="18-29">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128150;</span>
+              <span class="opt-text">18 – 29</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q2" value="30-39">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128150;</span>
+              <span class="opt-text">30 – 39</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q2" value="40-49">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128150;</span>
+              <span class="opt-text">40 – 49</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q2" value="50-59">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128150;</span>
+              <span class="opt-text">50 – 59</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q2" value="60+">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128150;</span>
+              <span class="opt-text">60+</span>
+            </span>
+          </label>
+
+        </div>
+        <div class="quiz-btns">
+          <button class="btn-back" id="q2-back">&#8592; Back</button>
+          <button class="btn-continue" id="q2-next" disabled>Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3 — Weight range (radio) ── -->
+      <div class="quiz-step" id="quiz-step-3">
+        <h3 class="quiz-q-title">How would you describe your current weight?</h3>
+        <div class="quiz-options">
+
+          <label class="opt-label">
+            <input type="radio" name="q3" value="healthy">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#127774;</span>
+              <span class="opt-text">I'm at a healthy weight</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q3" value="slightly">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128522;</span>
+              <span class="opt-text">Slightly overweight</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q3" value="moderately">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128528;</span>
+              <span class="opt-text">Moderately overweight</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q3" value="significantly">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128533;</span>
+              <span class="opt-text">Significantly overweight</span>
+            </span>
+          </label>
+
+        </div>
+        <div class="quiz-btns">
+          <button class="btn-back" id="q3-back">&#8592; Back</button>
+          <button class="btn-continue" id="q3-next" disabled>Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 4 — Goal amount (radio) ── -->
+      <div class="quiz-step" id="quiz-step-4">
+        <h3 class="quiz-q-title">How much would you like to lose?</h3>
+        <div class="quiz-options">
+
+          <label class="opt-label">
+            <input type="radio" name="q4" value="1-10">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#127774;</span>
+              <span class="opt-text">1 – 10 lbs</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q4" value="11-25">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#129327;</span>
+              <span class="opt-text">11 – 25 lbs</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q4" value="26-50">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128170;</span>
+              <span class="opt-text">26 – 50 lbs</span>
+            </span>
+          </label>
+
+          <label class="opt-label">
+            <input type="radio" name="q4" value="50+">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#127942;</span>
+              <span class="opt-text">More than 50 lbs</span>
+            </span>
+          </label>
+
+        </div>
+        <div class="quiz-btns">
+          <button class="btn-back" id="q4-back">&#8592; Back</button>
+          <button class="btn-continue" id="q4-next" disabled>Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 5 — Symptoms (checkboxes) ── -->
+      <div class="quiz-step" id="quiz-step-5">
+        <h3 class="quiz-q-title">Which of these apply to you?</h3>
+        <div class="quiz-options">
+
+          <label class="opt-label" data-value="bloating">
+            <input type="checkbox" name="q5" value="bloating">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128565;</span>
+              <span class="opt-text">Bloating or digestive issues</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="low_energy">
+            <input type="checkbox" name="q5" value="low_energy">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128564;</span>
+              <span class="opt-text">Low energy throughout the day</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="weight">
+            <input type="checkbox" name="q5" value="weight">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#9878;</span>
+              <span class="opt-text">Difficulty losing weight</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="sleep">
+            <input type="checkbox" name="q5" value="sleep">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128319;</span>
+              <span class="opt-text">Poor sleep quality</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="cravings">
+            <input type="checkbox" name="q5" value="cravings">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#127849;</span>
+              <span class="opt-text">Frequent food cravings</span>
+            </span>
+          </label>
+
+          <label class="opt-label" data-value="sluggish">
+            <input type="checkbox" name="q5" value="sluggish">
+            <span class="opt-inner">
+              <span class="opt-emoji">&#128556;</span>
+              <span class="opt-text">Feeling sluggish after meals</span>
+            </span>
+          </label>
+
+        </div>
+        <div class="quiz-btns">
+          <button class="btn-back" id="q5-back">&#8592; Back</button>
+          <button class="btn-continue" id="q5-next" disabled>See My Results &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Loading animation -->
+      <div class="quiz-loading" id="quiz-loading">
+        <p class="loading-title">&#128300; Analyzing your answers...</p>
+        <p class="loading-text">Creating your personalized Baking Soda Protocol</p>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar-fill" id="loading-bar"></div>
+        </div>
+        <p id="loading-pct" style="font-size:14px;color:var(--gold-dark);font-weight:700;">0%</p>
+      </div>
+
+    </div><!-- /.quiz-card -->
+  </section>
+
+
+  <!-- ============================================
+       PERSONALIZED RESULT
+  ============================================ -->
+  <section class="result-section" id="quiz-result">
+    <div class="wrap">
+      <div class="result-badge">YOUR PERSONALIZED PROTOCOL</div>
+      <h2 class="result-title" id="result-title">Your Baking Soda Protocol Is Ready</h2>
+      <p class="result-desc" id="result-desc">Based on your answers, we've organized a personalized educational routine focused on your specific wellness goals and preferences.</p>
+      <ul class="result-list">
+        <li><span class="result-check">&#10003;</span> Personalized educational roadmap</li>
+        <li><span class="result-check">&#10003;</span> Baking Soda Protocol eBook &amp; guide</li>
+        <li><span class="result-check">&#10003;</span> Video lessons &amp; step-by-step walkthroughs</li>
+        <li><span class="result-check">&#10003;</span> Practical recipe collection</li>
+        <li><span class="result-check">&#10003;</span> Daily wellness routines &amp; checklists</li>
+        <li><span class="result-check">&#10003;</span> Nutrition education resources</li>
+      </ul>
+      <a href="#offer-section" class="btn btn-green checkout-btn">GET MY COMPLETE PROTOCOL</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       OFFER SECTION — Gold
+  ============================================ -->
+  <section class="offer-section" id="offer-section">
+
+    <div class="offer-header wrap">
+      <p class="offer-header-title">Choose Your Discounted Baking Soda Protocol Package With Our Special Time-Limited Offer!</p>
+      <p class="offer-header-sub">
+        <span class="offer-header-shipping">&#10003; Enjoy INSTANT ACCESS on all packages</span>
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="offer-card">
+        <div class="offer-card-header">
+          <p class="offer-card-tag">&#11088; MOST POPULAR</p>
+          <p class="offer-card-name">The Baking Soda Protocol</p>
+        </div>
+        <div class="offer-card-body">
+
+          <ul class="offer-includes">
+            <li><span class="offer-check">&#10003;</span> Personalized educational roadmap</li>
+            <li><span class="offer-check">&#10003;</span> Baking Soda Protocol eBook (digital)</li>
+            <li><span class="offer-check">&#10003;</span> Video lessons — step-by-step walkthrough</li>
+            <li><span class="offer-check">&#10003;</span> Practical baking soda recipe collection</li>
+            <li><span class="offer-check">&#10003;</span> Daily wellness routines &amp; habits guide</li>
+            <li><span class="offer-check">&#10003;</span> Nutrition education resources</li>
+            <li><span class="offer-check">&#10003;</span> Daily wellness checklists</li>
+            <li><span class="offer-check">&#10003;</span> Quick-reference guides</li>
+            <li><span class="offer-check">&#10003;</span> Instant digital access — no shipping</li>
+          </ul>
+
+          <div class="offer-price-box">
+            <p class="offer-price-old">Regular price: $97</p>
+            <div class="offer-price-main">
+              <span class="offer-price-cur">$</span>
+              <span class="offer-price-num">39</span>
+              <span class="offer-price-usd">USD</span>
+            </div>
+            <p class="offer-price-type">ONE-TIME PAYMENT</p>
+            <p class="offer-price-note">No subscription &bull; No hidden fees</p>
+          </div>
+
+          <a href="#" class="btn btn-green checkout-btn cta-checkout">
+            &#128274; ADD TO CART &nbsp; — &nbsp; $39 TODAY
+          </a>
+          <p class="offer-cta-note">One-time payment &bull; Digital access &bull; No physical product shipped</p>
+
+          <div class="pay-icons">
+            <span class="pay-icon">VISA</span>
+            <span class="pay-icon">MC</span>
+            <span class="pay-icon">AMEX</span>
+            <span class="pay-icon">PayPal</span>
+            <span class="pay-icon">&#128274; SSL</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /#offer-section -->
+
+
+  <!-- ============================================
+       GUARANTEE 1 — Round Badge
+  ============================================ -->
+  <section class="guarantee-section" id="guarantee-1">
+    <div class="guarantee-inner">
+      <div class="guarantee-badge-round">
+        <span class="badge-pct">100%</span>
+        <span class="badge-label">Satisfaction<br>or your<br>money back</span>
+      </div>
+      <div class="guarantee-text">
+        <h3>100% Satisfaction or Your Money Back</h3>
+        <p>We want you to feel completely confident in your purchase. If you go through the program and aren't satisfied, simply contact our support team within the guarantee period to request a full refund. No hassle, no questions.</p>
+        <br>
+        <a href="#" class="btn btn-green checkout-btn cta-checkout" style="max-width:300px;">GET STARTED NOW</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       DARK PROMO SECTION
+  ============================================ -->
+  <section class="dark-promo">
+    <div class="wrap">
+      <div class="dark-promo-icon">&#9889;</div>
+      <h2>Transform Your Wellness Faster With The Complete Baking Soda Protocol</h2>
+      <p>Get organized, guided access to the full educational program — everything in one place, ready to use from any device, starting today.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       TESTIMONIALS — Social Proof
+  ============================================ -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="testimonials-header">
+      <h2>What People Are Saying About The Baking Soda Protocol?</h2>
+    </div>
+    <p class="testimonials-sub">Top reviews — United States</p>
+
+    <div class="testimonial-card">
+      <div class="test-header">
+        <img class="test-avatar" src="https://i.pravatar.cc/48?img=44" alt="" loading="lazy">
+        <div class="test-info">
+          <div class="test-name">[Customer Name] &bull; <span style="font-size:12px;color:var(--fb-gray);">Verified Buyer</span></div>
+          <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="test-meta">Reviewed on July 14, 2024</div>
+        </div>
+      </div>
+      <div class="test-product-tag">&#10003; Purchased: The Baking Soda Protocol — 1 Digital Access</div>
+      <p class="test-text">"[AUTHENTIC CUSTOMER TESTIMONIAL — Replace with a verified, consented member review.]"</p>
+      <div class="test-helpful">
+        <span>Helpful?</span>
+        <button class="test-helpful-btn">&#128077; Yes</button>
+        <button class="test-helpful-btn">&#128078; No</button>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="test-header">
+        <img class="test-avatar" src="https://i.pravatar.cc/48?img=32" alt="" loading="lazy">
+        <div class="test-info">
+          <div class="test-name">[Customer Name] &bull; <span style="font-size:12px;color:var(--fb-gray);">Verified Buyer</span></div>
+          <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="test-meta">Reviewed on August 2, 2024</div>
+        </div>
+      </div>
+      <div class="test-product-tag">&#10003; Purchased: The Baking Soda Protocol — 1 Digital Access</div>
+      <p class="test-text">"[AUTHENTIC CUSTOMER TESTIMONIAL — Replace with a verified, consented member review.]"</p>
+      <div class="test-helpful">
+        <span>Helpful?</span>
+        <button class="test-helpful-btn">&#128077; Yes</button>
+        <button class="test-helpful-btn">&#128078; No</button>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="test-header">
+        <img class="test-avatar" src="https://i.pravatar.cc/48?img=56" alt="" loading="lazy">
+        <div class="test-info">
+          <div class="test-name">[Customer Name] &bull; <span style="font-size:12px;color:var(--fb-gray);">Verified Buyer</span></div>
+          <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="test-meta">Reviewed on August 19, 2024</div>
+        </div>
+      </div>
+      <div class="test-product-tag">&#10003; Purchased: The Baking Soda Protocol — 1 Digital Access</div>
+      <p class="test-text">"[AUTHENTIC CUSTOMER TESTIMONIAL — Replace with a verified, consented member review.]"</p>
+      <div class="test-helpful">
+        <span>Helpful?</span>
+        <button class="test-helpful-btn">&#128077; Yes</button>
+        <button class="test-helpful-btn">&#128078; No</button>
+      </div>
+    </div>
+
+    <p class="testimonials-placeholder">
+      &#128274; Testimonial slots above are placeholders. Replace with authenticated, consented customer reviews only.
+    </p>
+
+  </section><!-- /#testimonials -->
+
+
+  <!-- ============================================
+       SECOND OFFER — Gold
+  ============================================ -->
+  <section class="offer-section" id="offer-2">
+
+    <div class="offer-header wrap">
+      <p class="offer-header-title">Choose Your Discounted Baking Soda Protocol Package With Our Special Time-Limited Offer!</p>
+      <p class="offer-header-sub">
+        <span class="offer-header-shipping">&#10003; Enjoy INSTANT ACCESS on all packages</span>
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="offer-card">
+        <div class="offer-card-header">
+          <p class="offer-card-tag">&#11088; COMPLETE ACCESS</p>
+          <p class="offer-card-name">The Baking Soda Protocol</p>
+        </div>
+        <div class="offer-card-body">
+          <ul class="offer-includes">
+            <li><span class="offer-check">&#10003;</span> Personalized educational roadmap</li>
+            <li><span class="offer-check">&#10003;</span> Baking Soda Protocol eBook (digital)</li>
+            <li><span class="offer-check">&#10003;</span> Video lessons &amp; walkthroughs</li>
+            <li><span class="offer-check">&#10003;</span> Practical recipe collection</li>
+            <li><span class="offer-check">&#10003;</span> Daily wellness routines &amp; checklists</li>
+            <li><span class="offer-check">&#10003;</span> Nutrition education resources</li>
+            <li><span class="offer-check">&#10003;</span> Quick-reference guides</li>
+            <li><span class="offer-check">&#10003;</span> Instant digital access</li>
+          </ul>
+          <div class="offer-price-box">
+            <p class="offer-price-old">Regular price: $97</p>
+            <div class="offer-price-main">
+              <span class="offer-price-cur">$</span>
+              <span class="offer-price-num">39</span>
+              <span class="offer-price-usd">USD</span>
+            </div>
+            <p class="offer-price-type">ONE-TIME PAYMENT</p>
+            <p class="offer-price-note">No subscription &bull; No hidden fees</p>
+          </div>
+          <a href="#" class="btn btn-green checkout-btn cta-checkout">
+            &#128274; ADD TO CART &nbsp; — &nbsp; $39 TODAY
+          </a>
+          <p class="offer-cta-note">One-time payment &bull; Digital access &bull; No physical product shipped</p>
+          <div class="pay-icons">
+            <span class="pay-icon">VISA</span>
+            <span class="pay-icon">MC</span>
+            <span class="pay-icon">AMEX</span>
+            <span class="pay-icon">PayPal</span>
+            <span class="pay-icon">&#128274; SSL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /#offer-2 -->
+
+
+  <!-- ============================================
+       FAQ
+  ============================================ -->
+  <section class="faq-section" id="faq-section">
+    <div class="wrap-full">
+      <h2 style="padding:0 16px;margin-bottom:4px;">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>Is baking soda safe to use?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>The educational content in this program discusses general wellness uses of baking soda. As with any wellness practice, we always recommend consulting with a qualified healthcare professional regarding your individual health circumstances before making dietary changes.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>How long will it take to see results?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>This is an educational program and individual experiences will vary. The program is designed to provide you with knowledge and practical routines — your personal results depend on many factors including your starting point, consistency, and overall lifestyle.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>Will I be able to follow a plant-based diet?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Yes. The educational materials include guidance compatible with a wide range of dietary preferences, including plant-based and whole-food approaches.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>Can I follow this protocol even if I am on a specific diet?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>This is an educational program, not a medically prescribed diet. The routines and recipes presented are general wellness suggestions. Always consult your healthcare provider if you have specific dietary requirements or restrictions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>Can I take this alongside other supplements?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>This is a digital educational program — it does not include any physical supplements or ingredients. For questions about combining any wellness practices with medications or supplements, always consult a qualified healthcare professional.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>Will this work for someone who is over 60?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>The educational content in this program is designed for adults of all ages. As always, individuals with existing health conditions should consult their healthcare provider before beginning any new wellness routine.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" type="button">
+        <span>What's the best way to use this protocol?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>The program is organized as a step-by-step digital experience including video lessons, written guides, recipes, checklists and a personalized learning path. You work through it at your own pace from any device.</p>
+      </div>
+    </div>
+
+  </section><!-- /#faq-section -->
+
+
+  <!-- ============================================
+       ABOUT / EXPERT SECTION
+  ============================================ -->
+  <section class="expert-section" id="about-section">
+    <div class="expert-inner">
+      <div class="expert-photo-placeholder" aria-hidden="true">&#127807;</div>
+      <div class="expert-content">
+        <div class="expert-label">About The Program</div>
+        <div class="expert-name">The Baking Soda Protocol</div>
+        <p class="expert-bio">
+          This program was created as an independent educational resource to organize information about the popular baking soda wellness trend, everyday wellness habits, practical routines and nutrition education into one easy-to-follow digital experience. The content is for educational and informational purposes only and does not constitute medical advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       GUARANTEE 2 + FINAL CTA
+  ============================================ -->
+  <section class="guarantee-section" style="border-top:none; background: var(--fb-bg);">
+    <div class="guarantee-inner">
+      <div class="guarantee-badge-round">
+        <span class="badge-pct">100%</span>
+        <span class="badge-label">Money<br>Back<br>Guarantee</span>
+      </div>
+      <div class="guarantee-text">
+        <h3>100% Satisfaction or Your Money Back</h3>
+        <p>Your purchase is fully protected. If you go through the program and decide it isn't right for you, contact our support team within the guarantee period for a full refund — no questions asked.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="final-cta">
+    <div class="wrap">
+      <p class="final-cta-label">Limited Offer — Secure Your Access Today</p>
+      <h2>Get Your Complete Baking Soda Protocol Package at 60% Off Today!</h2>
+      <p>Instant digital access &bull; Personalized protocol &bull; All guides &amp; video lessons included</p>
+      <div class="final-price">
+        <span class="final-price-cur">$</span>
+        <span class="final-price-num">39</span>
+        <span class="final-price-usd">USD</span>
+      </div>
+      <a href="#" class="btn btn-green checkout-btn cta-checkout">
+        &#128274; GET INSTANT ACCESS — $39 TODAY
       </a>
+      <p class="final-cta-sub">One-time payment &bull; Digital product &bull; No subscription &bull; No shipping</p>
     </div>
+  </section>
+
+
+  <!-- ============================================
+       SCIENTIFIC REFERENCES
+  ============================================ -->
+  <section class="references-section" id="references-section">
+    <div class="wrap">
+      <h3>Scientific References</h3>
+      <p class="ref-disclaimer">
+        The following references represent general educational sources relevant to the content areas covered in this program. All content is for educational and informational purposes only. This program is not intended to diagnose, treat, cure or prevent any disease. Consult a qualified healthcare professional regarding your individual health circumstances.
+      </p>
+      <div class="ref-list">
+        <div class="ref-item">
+          <span class="ref-num">[1]</span>
+          <p>[Insert legitimate educational reference — e.g., relevant nutrition or biochemistry research from a peer-reviewed journal]</p>
+        </div>
+        <div class="ref-item">
+          <span class="ref-num">[2]</span>
+          <p>[Insert legitimate educational reference]</p>
+        </div>
+        <div class="ref-item">
+          <span class="ref-num">[3]</span>
+          <p>[Insert legitimate educational reference]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div><!-- /#pitch-reveal END -->
+
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      <span style="color:var(--gold);margin-right:6px;">&#9670;</span>
+      <span class="footer-brand-name">THE BAKING SODA PROTOCOL</span>
+    </div>
+
+    <nav class="footer-nav">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Return Policy</a>
+      <a href="#">Contact Us</a>
+    </nav>
+
+    <p class="footer-support">
+      For Product Support, please contact: <a href="mailto:[INSERT_SUPPORT_EMAIL]">[INSERT SUPPORT EMAIL]</a>
+    </p>
+
+    <p class="footer-disclaimer">
+      This website and program provide general educational and informational content only. The Baking Soda Protocol is not a medical treatment, medication or dietary supplement and is not intended to diagnose, treat, cure or prevent any disease or medical condition. Individual experiences may vary. Results are not typical. Consult a qualified healthcare professional regarding your individual health circumstances before making any changes to your health or wellness routine. Testimonials shown reflect individual experiences and are not a guarantee of results.
+    </p>
+
+    <p class="footer-copy">&copy; 2024 The Baking Soda Protocol. All rights reserved.</p>
+
   </div>
+</footer>
 
 
-  <!-- JavaScript -->
-  <script src="js/app.js"></script>
+<!-- ================================================
+     MOBILE STICKY CTA
+================================================ -->
+<div class="mobile-sticky" id="mobile-sticky">
+  <div class="mobile-sticky-inner">
+    <div class="mobile-sticky-price">
+      $39
+      <small>One-time &bull; Digital</small>
+    </div>
+    <a href="#" class="btn btn-green checkout-btn cta-checkout" style="max-width:220px;padding:14px;font-size:14px;">
+      GET ACCESS NOW
+    </a>
+  </div>
+</div>
 
+
+<script src="js/app.js"></script>
 </body>
 </html>
