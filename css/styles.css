@@ -919,34 +919,26 @@ button { font-family: inherit; }
   100% { box-shadow: 0 4px 0 var(--green-dk), 0 0 0 0 rgba(46,125,50,0); }
 }
 
-@keyframes ctaShimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
 .btn-add {
   display: block;
   width: 100%;
   padding: 16px;
-  background: linear-gradient(270deg, #2E7D32, #43A047, #2E7D32, #1B5E20, #2E7D32);
-  background-size: 300% auto;
+  background: var(--green);
   color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 17px;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 4px 0 var(--green-dk);
   text-align: center;
   letter-spacing: 0.3px;
   margin-bottom: 10px;
-  animation: ctaPulse 2s ease-out infinite, ctaShimmer 3s linear infinite;
+  animation: ctaPulse 2s ease-out infinite;
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .btn-add:hover {
-  animation: ctaShimmer 1.2s linear infinite;
-  box-shadow: 0 4px 0 var(--green-dk), 0 0 18px rgba(46,125,50,0.5);
+  background: #256427;
   transform: translateY(-1px);
 }
 
