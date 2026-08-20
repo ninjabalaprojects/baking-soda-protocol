@@ -590,47 +590,130 @@ button { font-family: inherit; }
 .opt-lines span { font-size: 14px; font-weight: 500; }
 .opt-sub { font-size: 12px; color: var(--gray); font-weight: 400; }
 
-/* Result card */
+/* ── LOADING ──────────────────────────────────────── */
+@keyframes spinGear { to { transform: rotate(360deg); } }
+@keyframes qlStepIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.quiz-loading {
+  display: none;
+  text-align: center;
+  padding: 40px 20px 32px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+  margin: 8px 0;
+}
+
+.ql-spinner {
+  font-size: 34px;
+  display: inline-block;
+  animation: spinGear 2s linear infinite;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.ql-title  { font-size: 18px; font-weight: 800; color: #111; margin-bottom: 4px; }
+.ql-sub    { font-size: 13px; color: var(--gray); margin-bottom: 20px; min-height: 18px; transition: opacity 0.3s; }
+
+.ql-bar-wrap {
+  height: 12px;
+  background: #e4e6ea;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.ql-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dk), var(--gold), #f0c040);
+  border-radius: 8px;
+  width: 0;
+  transition: width 0.35s ease;
+}
+
+.ql-pct { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 20px; }
+
+.ql-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+.ql-step {
+  font-size: 13px;
+  color: #bbb;
+  opacity: 0;
+  transition: color 0.4s, opacity 0.4s;
+}
+
+.ql-step.on {
+  color: var(--green);
+  opacity: 1;
+  animation: qlStepIn 0.4s ease forwards;
+}
+
+/* ── RESULT CARD ─────────────────────────────────── */
+@keyframes qrFadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
 .quiz-result {
   display: none;
   opacity: 0;
-  transition: opacity 0.4s ease;
-  padding: 4px 0 8px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border: 1px solid #C8E6C9;
+  margin: 8px 0;
+  transition: opacity 0.5s ease;
 }
 
 .quiz-result.show { opacity: 1; }
 
 .qr-ready {
+  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%);
+  color: #fff;
   text-align: center;
-  padding: 20px 0 14px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 16px;
+  padding: 28px 20px 22px;
 }
 
-.qr-ready-icon { font-size: 32px; margin-bottom: 6px; }
+.qr-ready-icon { font-size: 40px; margin-bottom: 8px; line-height: 1; }
 
 .qr-ready h2 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
-  color: var(--green);
-  margin-bottom: 4px;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
 }
 
-.qr-ready p { font-size: 14px; color: var(--gray); }
+.qr-ready p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+  max-width: 260px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.qr-body { background: #fff; padding: 18px 16px 8px; }
 
 .qr-profile {
-  background: #f9fafb;
+  background: #f7f8fa;
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 14px 16px;
+  padding: 14px 14px 6px;
   margin-bottom: 14px;
 }
 
 .qr-profile h3 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--gray);
   margin-bottom: 10px;
-  color: #111;
 }
 
 .rp-row {
@@ -638,60 +721,65 @@ button { font-family: inherit; }
   align-items: flex-start;
   gap: 8px;
   font-size: 13px;
-  color: #333;
-  padding: 5px 0;
+  color: #222;
+  padding: 6px 0;
   border-bottom: 1px solid var(--border);
   line-height: 1.4;
 }
 
 .rp-row:last-child { border-bottom: none; }
-.rp-ico { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.rp-ico { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 
 .qr-estimate {
-  background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
-  border: 1px solid #A5D6A7;
+  background: linear-gradient(135deg, #F9FBE7, #E8F5E9);
+  border: 1px solid #C5E1A5;
   border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
+  padding: 16px;
+  margin-bottom: 18px;
   text-align: center;
 }
 
-.qr-estimate h3 {
-  font-size: 14px;
+.qr-estimate-label {
+  font-size: 11px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
   color: var(--green);
   margin-bottom: 8px;
 }
 
 .qr-lbs {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 900;
   color: var(--green);
   margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
 
 .qr-desc {
   font-size: 13px;
   color: #555;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .qr-product {
   text-align: center;
-  padding: 20px 0 8px;
+  padding: 4px 0 20px;
 }
 
 .qr-product-img {
-  max-width: 200px;
+  max-width: 190px;
   margin: 0 auto;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.18));
 }
+
+.qr-cta { padding: 0 0 8px; }
 
 .qr-security {
   text-align: center;
   font-size: 12px;
   color: var(--gray);
-  margin: 8px 0 10px;
+  margin: 8px 0 12px;
 }
 
 .btn-redo {
@@ -699,22 +787,15 @@ button { font-family: inherit; }
   width: 100%;
   background: transparent;
   border: none;
-  font-size: 13px;
-  color: var(--gray);
+  font-size: 12px;
+  color: #aaa;
   cursor: pointer;
   text-align: center;
   text-decoration: underline;
   padding: 4px;
 }
 
-.btn-redo:hover { color: #333; }
-
-.quiz-loading { display: none; text-align: center; padding: 32px 16px; }
-.ql-title  { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.ql-sub    { font-size: 14px; color: var(--gray); margin-bottom: 16px; min-height: 20px; }
-.ql-bar-wrap { height: 14px; background: #e4e6ea; border-radius: 8px; overflow: hidden; margin-bottom: 8px; }
-.ql-bar    { height: 100%; background: linear-gradient(90deg, var(--gold-dk), var(--gold)); border-radius: 8px; width: 0; transition: width 0.3s ease; }
-.ql-pct    { font-size: 15px; font-weight: 700; color: var(--gold); }
+.btn-redo:hover { color: #555; }
 
 /* ── OFFER CARD ─────────────────────────────────── */
 #offer-section, .offer-repeat {

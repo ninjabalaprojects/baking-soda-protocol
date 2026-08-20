@@ -276,9 +276,16 @@ function showLoading() {
     [98, 'Your protocol is ready!'],
   ];
 
-  var id = window.setInterval(function() {
-    cur += Math.random() * 9 + 4;
-    if (cur > 100) cur = 100;
+  var s1 = document.getElementById('ql-s1');
+  var s2 = document.getElementById('ql-s2');
+  var s3 = document.getElementById('ql-s3');
+
+  function step() {
+    var inc = cur < 40 ? (Math.random() * 5 + 3)
+            : cur < 75 ? (Math.random() * 3 + 1.5)
+            : cur < 92 ? (Math.random() * 1.5 + 0.8)
+            :            (Math.random() * 0.6 + 0.3);
+    cur = Math.min(cur + inc, 100);
     var rounded = Math.round(cur);
     if (bar) bar.style.width = rounded + '%';
     if (pct) pct.textContent = rounded + '%';
@@ -287,11 +294,17 @@ function showLoading() {
         if (cur >= msgs[i][0]) { msg.textContent = msgs[i][1]; break; }
       }
     }
+    if (s1 && cur >= 35)  s1.classList.add('on');
+    if (s2 && cur >= 65)  s2.classList.add('on');
+    if (s3 && cur >= 98)  s3.classList.add('on');
     if (cur >= 100) {
-      window.clearInterval(id);
-      window.setTimeout(showOffer, 900);
+      window.setTimeout(showOffer, 1100);
+    } else {
+      var delay = cur < 40 ? 260 : cur < 75 ? 320 : cur < 92 ? 400 : 480;
+      window.setTimeout(step, delay);
     }
-  }, 220);
+  }
+  window.setTimeout(step, 300);
 }
 
 function showOffer() {

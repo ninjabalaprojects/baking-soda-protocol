@@ -392,34 +392,51 @@
 
       <!-- Loading -->
       <div class="quiz-loading" id="quiz-loading">
-        <p class="ql-title">&#128300; Analyzing your answers...</p>
-        <p class="ql-sub" id="ql-msg">Generating your personalized Baking Soda Protocol</p>
+        <div class="ql-spinner">&#9881;</div>
+        <p class="ql-title">Building Your Personalized Protocol</p>
+        <p class="ql-sub" id="ql-msg">Analyzing your answers&#8230;</p>
         <div class="ql-bar-wrap"><div class="ql-bar" id="ql-bar"></div></div>
         <p class="ql-pct" id="ql-pct">0%</p>
+        <div class="ql-steps">
+          <span class="ql-step" id="ql-s1">&#10003; Profile analyzed</span>
+          <span class="ql-step" id="ql-s2">&#10003; Protocol matched</span>
+          <span class="ql-step" id="ql-s3">&#10003; Results ready</span>
+        </div>
       </div>
 
       <!-- Personalized Result -->
       <div class="quiz-result" id="quiz-result">
+
         <div class="qr-ready">
           <p class="qr-ready-icon">&#10024;</p>
           <h2>Your Plan Is Ready</h2>
-          <p>You're a perfect match for The Baking Soda Protocol!</p>
+          <p>You're a great match for The Baking Soda Protocol!</p>
         </div>
-        <div class="qr-profile">
-          <h3>&#128203; Your Profile Summary</h3>
-          <div id="result-summary"></div>
+
+        <div class="qr-body">
+
+          <div class="qr-profile">
+            <h3>&#128203; Your Profile</h3>
+            <div id="result-summary"></div>
+          </div>
+
+          <div class="qr-estimate">
+            <p class="qr-estimate-label">&#128200; Your Projected Results</p>
+            <p class="qr-lbs" id="result-lbs"></p>
+            <p class="qr-desc" id="result-desc"></p>
+          </div>
+
+          <div class="qr-product">
+            <img src="img/produto.png" alt="The Baking Soda Protocol" class="qr-product-img">
+          </div>
+
+          <div class="qr-cta">
+            <a href="#" class="btn-add cta-checkout">&#128722; Get My Baking Soda Protocol — $39</a>
+            <p class="qr-security">&#128274; Secure checkout &nbsp;&bull;&nbsp; 60-day money-back guarantee</p>
+            <button class="btn-redo" id="btn-redo">&#8592; Retake quiz</button>
+          </div>
+
         </div>
-        <div class="qr-estimate">
-          <h3>&#128202; Your Estimated Results</h3>
-          <p class="qr-lbs" id="result-lbs"></p>
-          <p class="qr-desc" id="result-desc"></p>
-        </div>
-        <div class="qr-product">
-          <img src="img/produto.png" alt="The Baking Soda Protocol" class="qr-product-img">
-        </div>
-        <a href="#" class="btn-add cta-checkout" style="margin-top:16px;">&#128722; Get My Baking Soda Protocol Now</a>
-        <p class="qr-security">&#128274; Secure checkout &bull; 60-day money-back guarantee</p>
-        <button class="btn-redo" id="btn-redo">&#8592; Redo my profile</button>
       </div>
 
     </div>
