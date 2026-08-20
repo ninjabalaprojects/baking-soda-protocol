@@ -279,14 +279,16 @@
 
       <!-- Step 1 — Goals (checkboxes) -->
       <div class="quiz-step active" id="step-1">
+        <p class="quiz-step-num">Step 1 — Your Goals</p>
         <p class="quiz-q">What are your main goals right now?</p>
+        <p class="quiz-hint">Select all that apply — then hit Continue.</p>
         <div class="opts" role="group">
-          <label class="opt"><input type="checkbox" name="q1" value="lose_weight"><span class="opt-ico">&#9989;</span> Lose excess weight</label>
-          <label class="opt"><input type="checkbox" name="q1" value="energy"><span class="opt-ico">&#9889;</span> Get more energy</label>
-          <label class="opt"><input type="checkbox" name="q1" value="nutrition"><span class="opt-ico">&#127822;</span> Improve my nutrition</label>
-          <label class="opt"><input type="checkbox" name="q1" value="hydration"><span class="opt-ico">&#128167;</span> Better hydration</label>
-          <label class="opt"><input type="checkbox" name="q1" value="sleep"><span class="opt-ico">&#128564;</span> Sleep better</label>
-          <label class="opt"><input type="checkbox" name="q1" value="wellness"><span class="opt-ico">&#127807;</span> General wellness</label>
+          <label class="opt"><input type="checkbox" name="q1" value="fat_burn"><span class="opt-ico">&#128293;</span> Faster fat burning</label>
+          <label class="opt"><input type="checkbox" name="q1" value="cravings"><span class="opt-ico">&#127829;</span> Control appetite &amp; cravings</label>
+          <label class="opt"><input type="checkbox" name="q1" value="bloating"><span class="opt-ico">&#128524;</span> Reduce bloating</label>
+          <label class="opt"><input type="checkbox" name="q1" value="energy"><span class="opt-ico">&#9889;</span> More daily energy</label>
+          <label class="opt"><input type="checkbox" name="q1" value="skin"><span class="opt-ico">&#10024;</span> Younger-looking skin</label>
+          <label class="opt"><input type="checkbox" name="q1" value="mood"><span class="opt-ico">&#129504;</span> Better focus &amp; mood</label>
         </div>
         <div class="quiz-btns">
           <button class="btn-cont" id="n1" disabled>Continue &#8594;</button>
@@ -295,13 +297,15 @@
 
       <!-- Step 2 — Age (radio) -->
       <div class="quiz-step" id="step-2">
+        <p class="quiz-step-num">Step 2 — About You</p>
         <p class="quiz-q">What is your age range?</p>
+        <p class="quiz-hint">This helps us calibrate your protocol.</p>
         <div class="opts" role="group">
-          <label class="opt"><input type="radio" name="q2" value="18-29"><span class="opt-ico">&#128150;</span> 18 – 29</label>
-          <label class="opt"><input type="radio" name="q2" value="30-39"><span class="opt-ico">&#128150;</span> 30 – 39</label>
-          <label class="opt"><input type="radio" name="q2" value="40-49"><span class="opt-ico">&#128150;</span> 40 – 49</label>
-          <label class="opt"><input type="radio" name="q2" value="50-59"><span class="opt-ico">&#128150;</span> 50 – 59</label>
-          <label class="opt"><input type="radio" name="q2" value="60+"><span class="opt-ico">&#128150;</span> 60+</label>
+          <label class="opt"><input type="radio" name="q2" value="18-24"> 18 – 24 years</label>
+          <label class="opt"><input type="radio" name="q2" value="25-34"> 25 – 34 years</label>
+          <label class="opt"><input type="radio" name="q2" value="35-44"> 35 – 44 years</label>
+          <label class="opt"><input type="radio" name="q2" value="45-54"> 45 – 54 years</label>
+          <label class="opt"><input type="radio" name="q2" value="55+"> 55 years or older</label>
         </div>
         <div class="quiz-btns">
           <button class="btn-back" id="b2">&#8592; Back</button>
@@ -309,14 +313,27 @@
         </div>
       </div>
 
-      <!-- Step 3 — Weight (radio) -->
+      <!-- Step 3 — Weight range (radio) -->
       <div class="quiz-step" id="step-3">
-        <p class="quiz-q">How would you describe your current weight?</p>
+        <p class="quiz-step-num">Step 3 — Your Body</p>
+        <p class="quiz-q">What is your current weight range?</p>
+        <p class="quiz-hint">Your formula is calibrated to your body.</p>
         <div class="opts" role="group">
-          <label class="opt"><input type="radio" name="q3" value="healthy"><span class="opt-ico">&#127774;</span> I'm at a healthy weight</label>
-          <label class="opt"><input type="radio" name="q3" value="slightly"><span class="opt-ico">&#128522;</span> Slightly overweight</label>
-          <label class="opt"><input type="radio" name="q3" value="moderately"><span class="opt-ico">&#128528;</span> Moderately overweight</label>
-          <label class="opt"><input type="radio" name="q3" value="significantly"><span class="opt-ico">&#128533;</span> Significantly overweight</label>
+          <label class="opt opt-w"><input type="radio" name="q3" value="under140">
+            <div class="opt-lines"><span>Under 140 lbs</span><span class="opt-sub">Under 63 kg</span></div>
+          </label>
+          <label class="opt opt-w"><input type="radio" name="q3" value="140-169">
+            <div class="opt-lines"><span>140–169 lbs</span><span class="opt-sub">63–76 kg</span></div>
+          </label>
+          <label class="opt opt-w"><input type="radio" name="q3" value="170-199">
+            <div class="opt-lines"><span>170–199 lbs</span><span class="opt-sub">77–90 kg</span></div>
+          </label>
+          <label class="opt opt-w"><input type="radio" name="q3" value="200-229">
+            <div class="opt-lines"><span>200–229 lbs</span><span class="opt-sub">91–103 kg</span></div>
+          </label>
+          <label class="opt opt-w"><input type="radio" name="q3" value="230+">
+            <div class="opt-lines"><span>230 lbs or more</span><span class="opt-sub">104+ kg</span></div>
+          </label>
         </div>
         <div class="quiz-btns">
           <button class="btn-back" id="b3">&#8592; Back</button>
@@ -324,14 +341,28 @@
         </div>
       </div>
 
-      <!-- Step 4 — Goal amount (radio) -->
+      <!-- Step 4 — Loss goal (radio) -->
       <div class="quiz-step" id="step-4">
-        <p class="quiz-q">How much would you like to lose?</p>
+        <p class="quiz-step-num">Step 4 — Your Goal</p>
+        <p class="quiz-q">How much weight would you like to lose?</p>
+        <p class="quiz-hint">Choose your primary goal.</p>
         <div class="opts" role="group">
-          <label class="opt"><input type="radio" name="q4" value="1-10"><span class="opt-ico">&#127774;</span> 1 – 10 lbs</label>
-          <label class="opt"><input type="radio" name="q4" value="11-25"><span class="opt-ico">&#129327;</span> 11 – 25 lbs</label>
-          <label class="opt"><input type="radio" name="q4" value="26-50"><span class="opt-ico">&#128170;</span> 26 – 50 lbs</label>
-          <label class="opt"><input type="radio" name="q4" value="50+"><span class="opt-ico">&#127942;</span> More than 50 lbs</label>
+          <label class="opt"><input type="radio" name="q4" value="1-25">
+            <span class="opt-ico">&#127919;</span>
+            <div class="opt-lines"><span>1–25 lbs</span><span class="opt-sub">Light cut</span></div>
+          </label>
+          <label class="opt"><input type="radio" name="q4" value="26-50">
+            <span class="opt-ico">&#128293;</span>
+            <div class="opt-lines"><span>26–50 lbs</span><span class="opt-sub">Moderate loss</span></div>
+          </label>
+          <label class="opt"><input type="radio" name="q4" value="51-80">
+            <span class="opt-ico">&#128142;</span>
+            <div class="opt-lines"><span>51–80 lbs</span><span class="opt-sub">Significant loss</span></div>
+          </label>
+          <label class="opt"><input type="radio" name="q4" value="80+">
+            <span class="opt-ico">&#128640;</span>
+            <div class="opt-lines"><span>80+ lbs</span><span class="opt-sub">Major transformation</span></div>
+          </label>
         </div>
         <div class="quiz-btns">
           <button class="btn-back" id="b4">&#8592; Back</button>
@@ -341,14 +372,17 @@
 
       <!-- Step 5 — Symptoms (checkboxes) -->
       <div class="quiz-step" id="step-5">
-        <p class="quiz-q">Which of these apply to you?</p>
+        <p class="quiz-step-num">Step 5 — Symptoms</p>
+        <p class="quiz-q">Which of these do you currently experience?</p>
+        <p class="quiz-hint">Select all that apply — then hit Continue.</p>
         <div class="opts" role="group">
-          <label class="opt"><input type="checkbox" name="q5" value="bloating"><span class="opt-ico">&#128565;</span> Bloating or digestive issues</label>
-          <label class="opt"><input type="checkbox" name="q5" value="low_energy"><span class="opt-ico">&#128564;</span> Low energy throughout the day</label>
-          <label class="opt"><input type="checkbox" name="q5" value="weight"><span class="opt-ico">&#9878;</span> Difficulty losing weight</label>
-          <label class="opt"><input type="checkbox" name="q5" value="sleep"><span class="opt-ico">&#128319;</span> Poor sleep quality</label>
-          <label class="opt"><input type="checkbox" name="q5" value="cravings"><span class="opt-ico">&#127849;</span> Frequent food cravings</label>
-          <label class="opt"><input type="checkbox" name="q5" value="sluggish"><span class="opt-ico">&#128556;</span> Feeling sluggish after meals</label>
+          <label class="opt"><input type="checkbox" name="q5" value="fatigue"><span class="opt-ico">&#128564;</span> Fatigue &amp; low energy</label>
+          <label class="opt"><input type="checkbox" name="q5" value="belly"><span class="opt-ico">&#129347;</span> Belly bloating</label>
+          <label class="opt"><input type="checkbox" name="q5" value="sugar"><span class="opt-ico">&#127851;</span> Sugar cravings</label>
+          <label class="opt"><input type="checkbox" name="q5" value="slow_met"><span class="opt-ico">&#127777;&#65039;</span> Slow metabolism</label>
+          <label class="opt"><input type="checkbox" name="q5" value="mood"><span class="opt-ico">&#128543;</span> Mood swings</label>
+          <label class="opt"><input type="checkbox" name="q5" value="regain"><span class="opt-ico">&#128257;</span> Weight keeps coming back</label>
+          <label class="opt"><input type="checkbox" name="q5" value="none"><span class="opt-ico">&#9989;</span> None of the above</label>
         </div>
         <div class="quiz-btns">
           <button class="btn-back" id="b5">&#8592; Back</button>
@@ -362,6 +396,27 @@
         <p class="ql-sub">Preparing your personalized Baking Soda Protocol</p>
         <div class="ql-bar-wrap"><div class="ql-bar" id="ql-bar"></div></div>
         <p class="ql-pct" id="ql-pct">0%</p>
+      </div>
+
+      <!-- Personalized Result -->
+      <div class="quiz-result" id="quiz-result">
+        <div class="qr-ready">
+          <p class="qr-ready-icon">&#10024;</p>
+          <h2>Your Plan Is Ready</h2>
+          <p>You're a perfect match for The Baking Soda Protocol!</p>
+        </div>
+        <div class="qr-profile">
+          <h3>&#128203; Your Profile Summary</h3>
+          <div id="result-summary"></div>
+        </div>
+        <div class="qr-estimate">
+          <h3>&#128202; Your Estimated Results</h3>
+          <p class="qr-lbs" id="result-lbs"></p>
+          <p class="qr-desc" id="result-desc"></p>
+        </div>
+        <a href="#" class="btn-add cta-checkout" style="margin-top:16px;">&#128722; Get My Baking Soda Protocol Now</a>
+        <p class="qr-security">&#128274; Secure checkout &bull; 60-day money-back guarantee</p>
+        <button class="btn-redo" id="btn-redo">&#8592; Redo my profile</button>
       </div>
 
     </div>

@@ -23,6 +23,22 @@ const Q = {
   answers: {}
 };
 
+// ── QUIZ LABELS ───────────────────────────────────
+const LABELS = {
+  q1: { fat_burn:'Faster fat burning', cravings:'Control appetite & cravings', bloating:'Reduce bloating', energy:'More daily energy', skin:'Younger-looking skin', mood:'Better focus & mood' },
+  q2: { '18-24':'18–24 years old', '25-34':'25–34 years old', '35-44':'35–44 years old', '45-54':'45–54 years old', '55+':'55 years or older' },
+  q3: { 'under140':'Under 140 lbs', '140-169':'140–169 lbs', '170-199':'170–199 lbs', '200-229':'200–229 lbs', '230+':'230 lbs or more' },
+  q4: { '1-25':'1–25 lbs', '26-50':'26–50 lbs', '51-80':'51–80 lbs', '80+':'80+ lbs' },
+  q5: { fatigue:'Fatigue & low energy', belly:'Belly bloating', sugar:'Sugar cravings', slow_met:'Slow metabolism', mood:'Mood swings', regain:'Weight keeps coming back', none:'None of the above' }
+};
+
+const RESULTS = {
+  '1-25':  { lbs: '8–15 lbs',  period: 'in the first 30 days', desc: 'Women with your profile and commitment to the full protocol have reached their goal in as little as 6–8 weeks.' },
+  '26-50': { lbs: '15–22 lbs', period: 'in the first 30 days', desc: 'Women with your profile have lost 35+ lbs — and kept it off for good.' },
+  '51-80': { lbs: '18–29 lbs', period: 'in the first 30 days', desc: 'Women with your profile and commitment to the full 6-month protocol have lost 65+ lbs — and kept it off for good.' },
+  '80+':   { lbs: '22–35 lbs', period: 'in the first 30 days', desc: 'Women with your profile have lost 80+ lbs — and maintained their results long-term.' }
+};
+
 // ── UTILS ─────────────────────────────────────────
 const get  = id  => document.getElementById(id);
 const qs   = sel => document.querySelector(sel);
@@ -268,10 +284,57 @@ function showLoading() {
 function showOffer() {
   const loading = get('quiz-loading');
   if (loading) loading.classList.remove('on');
-  const offer = get('offer-section');
-  if (offer) {
-    scrollTo(offer, 56);
+
+  const result = get('quiz-result');
+  if (!result) { scrollTo(get('offer-section'), 56); return; }
+
+  const a = Q.answers;
+
+  // Build profile rows
+  const goals    = (a.q1 || []).map(v => LABELS.q1[v]).filter(Boolean).join(', ') || '—';
+  const age      = LABELS.q2[a.q2] || '—';
+  const weight   = LABELS.q3[a.q3] || '—';
+  const lose     = LABELS.q4[a.q4] || '—';
+  const symptoms = (a.q5 || []).map(v => LABELS.q5[v]).filter(Boolean).join(', ') || '—';
+
+  const summary = get('result-summary');
+  if (summary) {
+    summary.innerHTML = `
+      <div class="rp-row"><span class="rp-ico">🎯</span><span><strong>Goal:</strong> ${goals}</span></div>
+      <div class="rp-row"><span class="rp-ico">👤</span><span><strong>Age:</strong> ${age}</span></div>
+      <div class="rp-row"><span class="rp-ico">⚖️</span><span><strong>Current weight:</strong> ${weight}</span></div>
+      <div class="rp-row"><span class="rp-ico">📉</span><span><strong>Weight to lose:</strong> ${lose}</span></div>
+      <div class="rp-row"><span class="rp-ico">⚠️</span><span><strong>Symptoms:</strong> ${symptoms}</span></div>`;
   }
+
+  const res = RESULTS[a.q4] || RESULTS['26-50'];
+  const lbsEl = get('result-lbs');
+  const descEl = get('result-desc');
+  if (lbsEl) lbsEl.textContent = `${res.lbs} ${res.period}`;
+  if (descEl) descEl.textContent = res.desc;
+
+  result.style.display = 'block';
+  void result.offsetHeight;
+  result.classList.add('show');
+  setTimeout(() => scrollTo(result, 56), 50);
+}
+
+function initRedo() {
+  get('btn-redo')?.addEventListener('click', () => {
+    const result = get('quiz-result');
+    if (result) { result.classList.remove('show'); result.style.display = 'none'; }
+    Q.answers = {};
+    Q.step = 1;
+    qsa('input[type=checkbox], input[type=radio]').forEach(inp => { inp.checked = false; });
+    qsa('.opt').forEach(o => o.classList.remove('sel'));
+    qsa('.quiz-step').forEach(s => s.classList.remove('active', 'exiting', 'from-back'));
+    const first = get('step-1');
+    if (first) first.classList.add('active');
+    const n1 = get('n1');
+    if (n1) n1.disabled = true;
+    updateProg(1);
+    scrollTo(get('quiz-section'), 56);
+  });
 }
 
 // ── FAQ ────────────────────────────────────────────
@@ -352,6 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   wireCheckout();
   initTestHelp();
+  initRedo();
   initDev();
 
   window.BSP = { revealPitch, config: CONFIG };
