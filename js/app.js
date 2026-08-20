@@ -26,7 +26,7 @@ const Q = {
 // ── UTILS ─────────────────────────────────────────
 const get  = id  => document.getElementById(id);
 const qs   = sel => document.querySelector(sel);
-const qsa  = sel => [...document.querySelectorAll(sel)];
+const qsa  = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 function scrollTo(el, offset = 56) {
   if (!el) return;
