@@ -49,6 +49,13 @@ function scrollTo(el, offset = 56) {
   window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
 }
 
+// ── FACEBOOK PIXEL HELPER ─────────────────────────
+function fbTrack(event, params) {
+  if (typeof fbq === 'function') {
+    params ? fbq('track', event, params) : fbq('track', event);
+  }
+}
+
 // ── CHECKOUT ──────────────────────────────────────
 function wireCheckout() {
   const url = CONFIG.checkoutUrl;
@@ -56,6 +63,15 @@ function wireCheckout() {
     btn.setAttribute('href', url);
     btn.setAttribute('target', '_blank');
     btn.setAttribute('rel', 'noopener');
+    btn.addEventListener('click', function() {
+      fbTrack('InitiateCheckout', {
+        content_name: CONFIG.productName,
+        content_type: 'product',
+        value: CONFIG.price,
+        currency: CONFIG.currency,
+        num_items: 1
+      });
+    });
   });
 }
 
@@ -91,6 +107,14 @@ function revealPitch() {
 
     // 5. Start sale notifications
     startSaleNotifs();
+
+    // 6. Facebook Pixel — ViewContent (user sees the offer)
+    fbTrack('ViewContent', {
+      content_name: CONFIG.productName,
+      content_type: 'product',
+      value: CONFIG.price,
+      currency: CONFIG.currency
+    });
 
   }, 450);
 }
@@ -323,6 +347,13 @@ function showOffer() {
   void result.offsetHeight;
   result.classList.add('show');
   setTimeout(function() { scrollTo(result, 56); }, 100);
+
+  // Facebook Pixel — Lead (quiz completed, personalized result shown)
+  fbTrack('Lead', {
+    content_name: CONFIG.productName,
+    value: CONFIG.price,
+    currency: CONFIG.currency
+  });
 }
 
 function initRedo() {
