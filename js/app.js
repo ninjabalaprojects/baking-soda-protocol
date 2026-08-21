@@ -467,7 +467,7 @@ function startSaleNotifs() {
       '<span class="sn-flag">' + d.flag + '</span>' +
       '<div class="sn-text">' +
         '<p class="sn-name">' + d.name + '</p>' +
-        '<p class="sn-action">just purchased the protocol</p>' +
+        '<p class="sn-action">just purchased The Baking Soda Protocol</p>' +
         '<p class="sn-meta">\uD83D\uDCCD ' + d.loc + ' &nbsp;&middot;&nbsp; ' + d.ago + '</p>' +
       '</div>';
 
