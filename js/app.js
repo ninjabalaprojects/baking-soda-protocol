@@ -11,7 +11,7 @@ const CONFIG = {
   vslUrl:          '[INSERT_VTURB_URL]',
   vslVideoId:      '[INSERT_VTURB_VIDEO_ID]',
   pitchRevealTime: 2300,   // 38 min 20 sec
-  checkoutUrl:     '[INSERT_CHECKOUT_URL]',
+  checkoutUrl:     'https://go.centerpag.com/PPU38CQFGE7',
   supportEmail:    '[INSERT_SUPPORT_EMAIL]',
 };
 
