@@ -464,9 +464,9 @@ function startSaleNotifs() {
     const card = document.createElement('div');
     card.className = 'sn-card';
     card.innerHTML =
-      '<div class="sn-icon">' + d.flag + '</div>' +
+      '<img src="img/produto.png" alt="The Baking Soda Protocol" class="sn-product">' +
       '<div class="sn-text">' +
-        '<p class="sn-name">' + d.name + '</p>' +
+        '<p class="sn-name">' + d.flag + ' ' + d.name + '</p>' +
         '<p class="sn-action">just purchased <strong>The Baking Soda Protocol</strong></p>' +
         '<p class="sn-meta">' + d.loc + ' \u00B7 ' + d.ago + '</p>' +
       '</div>' +
