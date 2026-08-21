@@ -51,16 +51,11 @@ function scrollTo(el, offset = 56) {
 
 // ── CHECKOUT ──────────────────────────────────────
 function wireCheckout() {
-  qsa('.cta-checkout').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const url = CONFIG.checkoutUrl;
-      if (url && url !== '[INSERT_CHECKOUT_URL]') {
-        window.location.href = url;
-      } else {
-        alert('[BSP] Set CONFIG.checkoutUrl in js/app.js');
-      }
-    });
+  const url = CONFIG.checkoutUrl;
+  qsa('.cta-checkout').forEach(function(btn) {
+    btn.setAttribute('href', url);
+    btn.setAttribute('target', '_blank');
+    btn.setAttribute('rel', 'noopener');
   });
 }
 
