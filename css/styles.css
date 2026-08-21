@@ -798,25 +798,29 @@ button { font-family: inherit; }
 /* ── SALE NOTIFICATIONS ─────────────────────────── */
 #sale-notif {
   position: fixed;
-  bottom: 20px;
-  left: 16px;
+  bottom: 72px;   /* above mobile browser nav */
+  left: 12px;
   z-index: 9999;
   pointer-events: none;
-  max-width: 300px;
+  width: 272px;
+}
+
+@media (max-width: 400px) {
+  #sale-notif { width: 228px; bottom: 80px; left: 8px; }
 }
 
 .sn-card {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-  padding: 11px 14px 11px 12px;
-  border-left: 3px solid var(--green);
-  transform: translateX(calc(-100% - 24px));
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.04);
+  padding: 10px 12px 10px 10px;
+  transform: translateX(calc(-100% - 16px));
   opacity: 0;
-  transition: transform 0.48s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.4s ease;
+  transition: transform 0.44s cubic-bezier(0.34, 1.25, 0.64, 1), opacity 0.36s ease;
+  pointer-events: auto;
 }
 
 .sn-card.show {
@@ -825,35 +829,65 @@ button { font-family: inherit; }
 }
 
 .sn-card.hide {
-  transform: translateX(calc(-100% - 24px));
+  transform: translateX(calc(-100% - 16px));
   opacity: 0;
-  transition: transform 0.38s ease, opacity 0.3s ease;
+  transition: transform 0.32s ease, opacity 0.28s ease;
 }
 
-.sn-flag { font-size: 24px; line-height: 1; flex-shrink: 0; }
+.sn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #E8F5E9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
+}
 
 .sn-text { flex: 1; min-width: 0; }
 
 .sn-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #111;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .sn-action {
-  font-size: 12px;
-  color: #444;
-  margin-bottom: 3px;
+  font-size: 11px;
+  color: #333;
+  margin-bottom: 2px;
+  line-height: 1.3;
 }
 
 .sn-meta {
-  font-size: 11px;
-  color: #aaa;
+  font-size: 10px;
+  color: #bbb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+.sn-close {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 0 0 0 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  align-self: flex-start;
+  pointer-events: auto;
+}
+
+.sn-close:hover { color: #999; }
 
 /* ── OFFER CARD ─────────────────────────────────── */
 #offer-section, .offer-repeat {

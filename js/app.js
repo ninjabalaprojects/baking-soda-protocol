@@ -464,12 +464,19 @@ function startSaleNotifs() {
     const card = document.createElement('div');
     card.className = 'sn-card';
     card.innerHTML =
-      '<span class="sn-flag">' + d.flag + '</span>' +
+      '<div class="sn-icon">' + d.flag + '</div>' +
       '<div class="sn-text">' +
         '<p class="sn-name">' + d.name + '</p>' +
-        '<p class="sn-action">just purchased The Baking Soda Protocol</p>' +
-        '<p class="sn-meta">\uD83D\uDCCD ' + d.loc + ' &nbsp;&middot;&nbsp; ' + d.ago + '</p>' +
-      '</div>';
+        '<p class="sn-action">just purchased <strong>The Baking Soda Protocol</strong></p>' +
+        '<p class="sn-meta">' + d.loc + ' \u00B7 ' + d.ago + '</p>' +
+      '</div>' +
+      '<button class="sn-close" aria-label="Dismiss">&times;</button>';
+
+    card.querySelector('.sn-close').addEventListener('click', function() {
+      card.classList.remove('show');
+      card.classList.add('hide');
+      setTimeout(function() { if (card.parentNode) card.parentNode.removeChild(card); }, 350);
+    });
 
     container.appendChild(card);
 
