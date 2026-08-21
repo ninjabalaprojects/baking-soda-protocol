@@ -98,73 +98,56 @@ function revealPitch() {
   }, 450);
 }
 
-// ── VTURB ─────────────────────────────────────────
-function initVTurb() {
-  const container = get('vturb-container');
-  if (!container) return;
+// ── VTURB v4 SMARTPLAYER ──────────────────────────
+const PLAYER_ID = 'vid-6a87a49342232a9713a5af52';
 
-  const vid = CONFIG.vslVideoId;
-  if (!vid || vid === '[INSERT_VTURB_VIDEO_ID]') {
-    // Dev mode — placeholder stays visible
-    return;
-  }
-
-  get('video-placeholder')?.remove();
-
-  const script = document.createElement('script');
-  script.src   = 'https://player.vturb.com.br/player.js';
-  script.async = true;
-  script.onload  = () => embedVTurb(container, vid);
-  script.onerror = () => embedIframe(container);
-  document.head.appendChild(script);
+function onTime(t) {
+  if (typeof t === 'number' && t >= CONFIG.pitchRevealTime) revealPitch();
 }
 
-function embedVTurb(container, vid) {
-  const el = document.createElement('vturb-player');
-  el.setAttribute('vid', vid);
-  el.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
-  el.addEventListener('timeupdate',  onTime);
-  el.addEventListener('vtimeupdate', onTime);
-  container.appendChild(el);
-  window._vp = el;
-  startPoll();
-}
+function attachPlayerListeners(el) {
+  // DOM events fired by the web component
+  el.addEventListener('timeupdate',  function(e) { onTime(e.detail?.currentTime ?? e.currentTime ?? 0); });
+  el.addEventListener('vtimeupdate', function(e) { onTime(e.detail?.currentTime ?? e.currentTime ?? 0); });
+  el.addEventListener('vp:timeupdate', function(e) { onTime(e.detail?.currentTime ?? 0); });
 
-function embedIframe(container) {
-  const url = CONFIG.vslUrl;
-  if (!url || url === '[INSERT_VTURB_URL]') return;
-  const fr = document.createElement('iframe');
-  fr.src = url;
-  fr.allow = 'autoplay; fullscreen';
-  fr.allowFullscreen = true;
-  fr.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
-  container.appendChild(fr);
-}
-
-function onTime(e) {
-  const t = e.detail?.currentTime ?? e.currentTime ?? 0;
-  if (t >= CONFIG.pitchRevealTime) revealPitch();
-}
-
-let poll = null;
-function startPoll() {
-  poll = setInterval(() => {
-    const t = window._vp?.currentTime ?? window._vp?.getCurrentTime?.() ?? 0;
-    if (t >= CONFIG.pitchRevealTime) { revealPitch(); clearInterval(poll); }
+  // Polling fallback every 2s
+  var pollId = setInterval(function() {
+    var t = el.currentTime ?? (typeof el.getCurrentTime === 'function' ? el.getCurrentTime() : 0);
+    onTime(t);
+    if (revealed) clearInterval(pollId);
   }, 2000);
 }
 
-// PostMessage (iframe VTurb)
-window.addEventListener('message', e => {
+function initVTurb() {
+  // Try immediately (element may already exist in DOM)
+  var el = document.getElementById(PLAYER_ID);
+  if (el) { attachPlayerListeners(el); return; }
+
+  // Retry after player script loads (2s and 5s)
+  [2000, 5000, 10000].forEach(function(delay) {
+    setTimeout(function() {
+      if (revealed) return;
+      var el2 = document.getElementById(PLAYER_ID);
+      if (el2) attachPlayerListeners(el2);
+    }, delay);
+  });
+}
+
+// postMessage fallback (covers iframe and cross-origin players)
+window.addEventListener('message', function(e) {
   try {
-    const d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-    const t = d?.currentTime ?? d?.playback_position ?? d?.time ?? null;
-    if (typeof t === 'number' && t >= CONFIG.pitchRevealTime) revealPitch();
+    var d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+    var t = d && (d.currentTime ?? d.playback_position ?? d.time ?? null);
+    onTime(t);
   } catch (_) {}
 });
 
-// VTurb global hook
-window.vtubeCallback = { onTimestamp: t => { if (t >= CONFIG.pitchRevealTime) revealPitch(); } };
+// VTurb global timestamp callback
+window.vtubeCallback = { onTimestamp: function(t) { onTime(t); } };
+
+// SmartPlayer v4 global event hook
+window.addEventListener('vturb:timeupdate', function(e) { onTime(e.detail?.currentTime ?? 0); });
 
 // ── QUIZ ENGINE ───────────────────────────────────
 function initQuiz() {
