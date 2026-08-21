@@ -89,6 +89,8 @@ function revealPitch() {
       scrollTo(get('quiz-section'), 56);
     }, 150);
 
+    // 5. Start sale notifications
+    startSaleNotifs();
 
   }, 450);
 }
@@ -408,6 +410,88 @@ function initDev() {
   if (new URLSearchParams(window.location.search).get('preview') === 'pitch') {
     setTimeout(revealPitch, 400);
   }
+}
+
+// ── SALE NOTIFICATIONS ────────────────────────────
+const NOTIF_DATA = [
+  { flag:'\uD83C\uDDFA\uD83C\uDDF8', name:'Ashley M.',    loc:'Dallas, TX',          ago:'2 min ago'  },
+  { flag:'\uD83C\uDDFA\uD83C\uDDF8', name:'Jennifer K.',  loc:'Miami, FL',            ago:'Just now'   },
+  { flag:'\uD83C\uDDFA\uD83C\uDDF8', name:'Sarah L.',     loc:'Chicago, IL',          ago:'4 min ago'  },
+  { flag:'\uD83C\uDDFA\uD83C\uDDF8', name:'Amanda R.',    loc:'Phoenix, AZ',          ago:'7 min ago'  },
+  { flag:'\uD83C\uDDFA\uD83C\uDDF8', name:'Brittany H.',  loc:'Houston, TX',          ago:'1 min ago'  },
+  { flag:'\uD83C\uDDEC\uD83C\uDDE7', name:'Charlotte B.', loc:'London, UK',           ago:'3 min ago'  },
+  { flag:'\uD83C\uDDEC\uD83C\uDDE7', name:'Emma W.',      loc:'Manchester, UK',       ago:'6 min ago'  },
+  { flag:'\uD83C\uDDEC\uD83C\uDDE7', name:'Olivia T.',    loc:'Birmingham, UK',       ago:'Just now'   },
+  { flag:'\uD83C\uDDFF\uD83C\uDDE6', name:'Nomvula D.',   loc:'Johannesburg, SA',     ago:'5 min ago'  },
+  { flag:'\uD83C\uDDFF\uD83C\uDDE6', name:'Ayanda M.',    loc:'Cape Town, SA',        ago:'8 min ago'  },
+  { flag:'\uD83C\uDDE6\uD83C\uDDFA', name:'Ella M.',      loc:'Sydney, Australia',    ago:'2 min ago'  },
+  { flag:'\uD83C\uDDE6\uD83C\uDDFA', name:'Ava J.',       loc:'Melbourne, Australia', ago:'9 min ago'  },
+  { flag:'\uD83C\uDDE8\uD83C\uDDE6', name:'Emma L.',      loc:'Toronto, Canada',      ago:'4 min ago'  },
+  { flag:'\uD83C\uDDE8\uD83C\uDDE6', name:'Sophia M.',    loc:'Vancouver, Canada',    ago:'1 min ago'  },
+  { flag:'\uD83C\uDDEE\uD83C\uDDF1', name:'Maya R.',      loc:'Tel Aviv, Israel',     ago:'6 min ago'  },
+  { flag:'\uD83C\uDDEE\uD83C\uDDF1', name:'Noa S.',       loc:'Jerusalem, Israel',    ago:'Just now'   },
+  { flag:'\uD83C\uDDF3\uD83C\uDDFF', name:'Isla M.',      loc:'Auckland, NZ',         ago:'3 min ago'  },
+  { flag:'\uD83C\uDDF3\uD83C\uDDFF', name:'Charlotte R.', loc:'Wellington, NZ',       ago:'7 min ago'  },
+  { flag:'\uD83C\uDDF2\uD83C\uDDFD', name:'Sofia G.',     loc:'Mexico City, MX',      ago:'2 min ago'  },
+  { flag:'\uD83C\uDDF2\uD83C\uDDFD', name:'Valentina R.', loc:'Guadalajara, MX',      ago:'5 min ago'  },
+  { flag:'\uD83C\uDDEE\uD83C\uDDEA', name:'Aoife M.',     loc:'Dublin, Ireland',      ago:'Just now'   },
+  { flag:'\uD83C\uDDEE\uD83C\uDDEA', name:'Niamh K.',     loc:'Cork, Ireland',        ago:'10 min ago' },
+  { flag:'\uD83C\uDDF5\uD83C\uDDF7', name:'Isabella R.',  loc:'San Juan, Puerto Rico',ago:'3 min ago'  },
+  { flag:'\uD83C\uDDF5\uD83C\uDDF7', name:'Sofia M.',     loc:'Bayam\u00F3n, PR',     ago:'8 min ago'  },
+  { flag:'\uD83C\uDDF8\uD83C\uDDEA', name:'Astrid L.',    loc:'Stockholm, Sweden',    ago:'1 min ago'  },
+  { flag:'\uD83C\uDDF8\uD83C\uDDEA', name:'Maja E.',      loc:'Gothenburg, Sweden',   ago:'6 min ago'  },
+  { flag:'\uD83C\uDDEA\uD83C\uDDF8', name:'Luc\u00EDa M.',loc:'Madrid, Spain',        ago:'4 min ago'  },
+  { flag:'\uD83C\uDDEA\uD83C\uDDF8', name:'Sof\u00EDa R.',loc:'Barcelona, Spain',     ago:'Just now'   },
+];
+
+let notifActive = false;
+
+function startSaleNotifs() {
+  if (notifActive) return;
+  notifActive = true;
+
+  const container = document.getElementById('sale-notif');
+  if (!container) return;
+
+  // Shuffle for randomness
+  const list = NOTIF_DATA.slice().sort(function() { return Math.random() - 0.5; });
+  let idx = 0;
+
+  function showNext() {
+    const d = list[idx % list.length];
+    idx++;
+
+    const card = document.createElement('div');
+    card.className = 'sn-card';
+    card.innerHTML =
+      '<span class="sn-flag">' + d.flag + '</span>' +
+      '<div class="sn-text">' +
+        '<p class="sn-name">' + d.name + '</p>' +
+        '<p class="sn-action">just purchased the protocol</p>' +
+        '<p class="sn-meta">\uD83D\uDCCD ' + d.loc + ' &nbsp;&middot;&nbsp; ' + d.ago + '</p>' +
+      '</div>';
+
+    container.appendChild(card);
+
+    // Animate in (double rAF ensures transition triggers)
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { card.classList.add('show'); });
+    });
+
+    // Hide after 5.5s
+    setTimeout(function() {
+      card.classList.remove('show');
+      card.classList.add('hide');
+      setTimeout(function() { if (card.parentNode) card.parentNode.removeChild(card); }, 450);
+    }, 5500);
+
+    // Next: 12–20s natural gap
+    var gap = 12000 + Math.random() * 8000;
+    setTimeout(showNext, gap);
+  }
+
+  // First notification after 5s (page just revealed)
+  setTimeout(showNext, 5000);
 }
 
 // ── INIT ──────────────────────────────────────────
