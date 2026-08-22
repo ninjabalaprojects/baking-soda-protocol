@@ -120,7 +120,7 @@ function revealPitch() {
 }
 
 // ── VTURB v4 SMARTPLAYER ──────────────────────────
-const PLAYER_ID = 'vid-6a87a49342232a9713a5af52';
+const PLAYER_ID = 'vid-6a8a14843cd5e20f22c7111c';
 
 function onTime(t) {
   if (typeof t === 'number' && t >= CONFIG.pitchRevealTime) revealPitch();
